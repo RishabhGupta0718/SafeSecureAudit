@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeSecureAudit</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #555;
+            padding-top: 60px;
+        }
+        .sidebar a {
+            padding: 10px;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #444;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>SafeSecureAudit</h1>
+</div>
+
+<div class="sidebar">
+    <a href="{% url 'index' %}?tool=dnsresolvertool">DNS RESOLVER</a>
+    <a href="{% url 'index' %}?tool=waf">WAF CHECKER</a>
+    <a href="{% url 'index' %}?tool=portscanner">PORT SCAN TOOL</a>
+    <!-- Add more tool links here -->
+</div>
+
+<div class="content">
+    {% block body %}
+    {% endblock %}
+</div>
+
+<script>
+    // JavaScript to handle scanning
+    document.getElementById('ip-scan').addEventListener('click', function(event) {
+        event.preventDefault();
+        // Perform IP address scanning here
+        // For demonstration purposes, let's just show a fake result
+        document.querySelector('.content').innerHTML = '<h2>IP Address Scan Result:</h2><p>Fake IP address scan result...</p>';
+    });
+
+    document.getElementById('whois-scan').addEventListener('click', function(event) {
+        event.preventDefault();
+        // Perform WHOIS scanning here
+        // For demonstration purposes, let's just show a fake result
+        document.querySelector('.content').innerHTML = '<h2>WHOIS Scan Result:</h2><p>Fake WHOIS scan result...</p>';
+    });
+    // Add similar event listeners for other scanning tools
+</script>
+
+</body>
+</html>

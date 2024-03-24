@@ -1,0 +1,209 @@
+{% extends 'base.html' %} {% block body %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .result {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .result h2 {
+    color: #333;
+  }
+
+  .result p {
+    color: #555;
+  }
+/* Add this to your existing CSS styles */
+.result {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.result-title {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.result-details {
+  margin-left: 20px;
+}
+
+.record-type {
+  margin-bottom: 20px;
+}
+
+.record-type h3 {
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.record-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.record-list li {
+  color: #777;
+  font-size: 16px;
+  margin-left: 20px;
+}
+.progress-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  .progress-bar {
+    width: 0%;
+    height: 20px;
+    background-color: #007bff;
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+  }
+
+</style>
+<div class="container">
+    <h1>Website Scanner</h1>
+    <!-- Form start -->
+    <form id="scanForm" action="" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="websiteUrl">Enter Website URL:</label>
+        <input
+          type="text"
+          id="websiteUrl"
+          name="websiteUrl"
+          placeholder="example.com"
+          required
+        />
+      </div>
+      <input type="submit" value="Scan" />
+    </form>
+    <!-- Form end -->
+    <br />
+    <!-- Scan Results -->
+    <div class="result" id="scanResult" style="display: none">
+      <h1 class="mt-5 mb-4">Scan Results</h1>
+      <!-- prgress -->
+      <div class="progress-container" id="progressContainer" style="display: none">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <!-- if tool is dnsresolvertool -->
+{% if tool == 'dnsresolvertool' %}
+<div class="result">
+  <h2 class="result-title">DNS Resolver Results:</h2>
+  <div class="result-details">
+    {% for record_type, records in dns_results.items %}
+    <div class="record-type">
+      <h3>{{ record_type }}</h3>
+      <ul class="record-list">
+        {% for record in records %}
+        <li>{{ record }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+      <!-- if tool is portscanner -->
+      {% if tool == 'portscanner' %}
+      {% if open_ports %}
+      <div class="mb-4">
+        <h2>Open ports and associated vulnerabilities:</h2>
+        <ul class="list-group">
+          {% for port, service in open_ports.items %}
+          <li class="list-group-item">
+            Port {{ port }} <br />
+            {{ service }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
+      <div class="alert alert-success" role="alert">No open ports found.</div>
+      {% endif %}
+      {% endif %}
+      <!-- if tool is waf -->
+      {% if tool == 'waf' %}
+      {% if is_cloudflare is not None %}
+      {% if is_cloudflare %}
+      <h3>The website is using Cloudflare.</h3>
+      {% else %}
+      <h3>The website is not behind Cloudflare.</h3>
+      {% endif %}
+      {% endif %}
+      {% endif %} <!-- Add the missing endif tag here -->
+      <!-- Display error message if any -->
+      {% if error_message %}
+      <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+      {% endif %}
+    </div>
+  </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var scanResult = document.getElementById("scanResult");
+    scanResult.style.display = "block";
+  });
+</script>
+{% endblock %}

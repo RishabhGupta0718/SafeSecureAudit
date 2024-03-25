@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Information</title>
+</head>
+<body>
+    <h1>Domain Information for <b>{{ domain_data.domain }}<b></h1>
+    
+    <h2>Related Domains:</h2>
+    <ul>
+        {% for related_domain in domain_data.related_domains %}
+            <li><b>{{ related_domain }}<b></li>
+        {% endfor %}
+    </ul>
+    
+    <h2>DNS Information:</h2>
+    <ul>
+        <li>A Records: <b>{{ domain_data.dns.a }}<b></li>
+        <li>TXT Records: <b>{{ domain_data.dns.txt }}<b></li>
+        <li>Zone: <b>{{ domain_data.dns.zone }}<b></li>
+        <li>NS Records: <b>{{ domain_data.dns.ns }}<b></li>
+        <li>MX Records: <b>{{ domain_data.dns.mx }}<b></li>
+        <li>AAAA Records: <b>{{ domain_data.dns.aaaa }}<b></li>
+    </ul>
+    
+    <h2>Whois Information:</h2>
+    <ul>
+        <li>Registrar: <b>{{ domain_data.whois.server }}<b></li>
+        <li>Registration Date: <b>{{ domain_data.whois.created_date }}<b></li>
+        <li>Last updated: <b>{{ domain_data.whois.last_updated }}<b></li>
+        <li>Expiration Date: <b>{{ domain_data.whois.expiration_date }}<b></li>
+        <li>Name Server: <b>{{ domain_data.whois.name_servers }}<b></li>
+
+            <ul>
+                <h3>Technical</h3>
+                <li>country: <b>{{ domain_data.whois.technical.country }} </li>
+                <li>province: <b>{{ domain_data.whois.technical.province }}<b></li>
+                <li>phone<b>: {{ domain_data.whois.technical.phone }}<b></li>
+                <li>city<b>: {{ domain_data.whois.technical.city }}<b></li>
+                <li>street: <b>{{ domain_data.whois.technical.street }}<b></li>
+                <li>organization: <b>{{ domain_data.whois.technical.organization }}<b></li>
+                <li>name: <b>{{ domain_data.whois.technical.name }}<b></li>
+                <li>id<b>: {{ domain_data.whois.technical.id }}<b></li>
+                <li>postal_code: <b>{{ domain_data.whois.technical.postal_code }}<b></li>
+                <li>email: <b>{{ domain_data.whois.technical.email }}<b></li>
+            </ul>
+            <ul>
+                <h3>Registrar</h3>
+                <li>phone: <b>{{ domain_data.whois.registrar.phone }} </li>
+                <li>referral_url: <b>{{ domain_data.whois.registrar.referral_url }}<b></li>
+                <li>name<b>: {{ domain_data.whois.registrar.name }}<b></li>
+                <li>id<b>: {{ domain_data.whois.registrar.id }}<b></li>
+                <li>email: <b>{{ domain_data.whois.registrar.email }}<b></li>
+            </ul>
+        <!-- Add more whois information as needed -->
+    </ul>
+    
+    <h2>Software Information:</h2>
+    <ul>
+        {% for software_info in domain_data.software %}
+            <li><b>{{ software_info.uri }}<b></li>
+            <ul>
+                {% for tag_info in software_info.tag %}
+                    <li><b>{{ tag_info.fullname }}<b> - <b>{{ tag_info.description }}<b></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+    <h2>Ports Information:</h2>
+    <ul>
+        {% for port_info in domain_data.ports %}
+            <li>Protocol: <b>{{ port_info.protocol }}</b>, Port: <b>{{ port_info.port }}</b></li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Related Domains Query:</h2>
+    <p>{{ domain_data.related_domains_query }}</p>
+    
+{% endblock body %}

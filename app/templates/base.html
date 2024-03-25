@@ -46,6 +46,7 @@
 </div>
 
 <div class="sidebar">
+    <a href="{% url 'index' %}?tool=allinone">ALL IN ONE</a>
     <a href="{% url 'index' %}?tool=dnsresolvertool">DNS RESOLVER</a>
     <a href="{% url 'index' %}?tool=waf">WAF CHECKER</a>
     <a href="{% url 'index' %}?tool=portscanner">PORT SCAN TOOL</a>
@@ -56,7 +57,9 @@
     {% block body %}
     {% endblock %}
 </div>
-
+<footer>
+    <h1>Work in Progress - CodeAx1</h1>
+</footer>
 <script>
     // JavaScript to handle scanning
     document.getElementById('ip-scan').addEventListener('click', function(event) {

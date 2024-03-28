@@ -1,16 +1,23 @@
-import requests
-
-def fetch_all_in_one_data(domain_name):
-    url = f"https://netlas-all-in-one-host.p.rapidapi.com/host/{domain_name}/"
-    querystring = {"source_type": "include", "fields[0]": "*"}
-    headers = {
-        "X-RapidAPI-Key": "9814b3a6d1msh41b9e25311f05bap13521ejsn9147e8e70ae1",
-        "X-RapidAPI-Host": "netlas-all-in-one-host.p.rapidapi.com"
-    }
-    response = requests.get(url, headers=headers, params=querystring)
-    if response.status_code == 200:
-        print(response.json())
-    else:
-        return None
-
-fetch_all_in_one_data("saketcollege.edu.in")
+# DATA BREACH API ONLY 100 REQUESTS
+# import requests
+# url = "https://credential-verification.p.rapidapi.com/restpeopleMOB/MA/MaWcf.svc/Makshouf"
+# payload = {
+# 	"Service_Flag": "",
+# 	"Criterias": [
+# 		{
+# 			"Field": "page",
+# 			"Value": "1"
+# 		},
+# 		{
+# 			"Field": "SEARCH_KEY",
+# 			"Value": "silberfenster@a1.net"
+# 		}
+# 	]
+# }
+# headers = {
+# 	"content-type": "application/json",
+# 	"X-RapidAPI-Key": "9814b3a6d1msh41b9e25311f05bap13521ejsn9147e8e70ae1",
+# 	"X-RapidAPI-Host": "credential-verification.p.rapidapi.com"
+# }
+# response = requests.post(url, json=payload, headers=headers)
+# print(response.json())

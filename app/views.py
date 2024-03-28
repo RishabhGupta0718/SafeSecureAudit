@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .utils import portscanner
 from .utils.tool import dns_record_lookup,dnslookup,reverse_dns,ipgeotool,page_extract,extract_emails,fetch_all_in_one_data
 from .utils.waf import check_cloudflare
+from .utils.phone_info_tool import gather_phone_info
 
 def index(request):
     tool = request.GET.get('tool', '')
@@ -63,6 +64,11 @@ def index(request):
             is_cloudflare = check_cloudflare(domain_name)
             context = {'tool': tool, 'is_cloudflare': is_cloudflare, 'domain_name': domain_name}
             return render(request, 'index.html', context)
+        
+        elif tool == "phoneinfo":
+            phone_info_results = gather_phone_info(domain_name)
+            print(phone_info_results)
+            return render(request, 'index.html', {'tool': tool, 'domain_name': domain_name, 'phone_info_results': phone_info_results})
         
         elif tool == "extract_emails":
             extract_emails_results = extract_emails(domain_name)

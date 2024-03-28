@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Info</title>
+</head>
+<body>
+    <h1>Phone Info</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="phone_number">Enter phone number (including country code):</label>
+        <input type="text" id="phone_number" name="phone_number">
+        <button type="submit">Get Info</button>
+    </form>
+    {% if phone_info %}
+        <h2>Phone Number: {{ phone_info.phone_number }}</h2>
+        <p>Country: {{ phone_info.country }}</p>
+        <p>Carrier: {{ phone_info.carrier }}</p>
+    {% endif %}
+</body>
+</html>

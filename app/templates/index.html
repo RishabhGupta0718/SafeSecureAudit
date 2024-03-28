@@ -221,6 +221,12 @@
 .service {
   color: #777;
 }
+b {
+  display: inline-block;
+  max-width: 100%; /* Ensures the <b> tag doesn't exceed its container */
+  overflow-wrap: break-word; /* Allows long words to break and wrap onto the next line */
+}
+
 </style>
 
 <!-- Main Content -->
@@ -376,6 +382,17 @@
     <h2>PAGE LINK EXTRACTER</h2>
     <ul>
     {% for result in page_extract_results %}
+        <li>{{ result }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- Email Extracter -->
+{% if tool == "extract_emails" %}
+<p><strong>Domain Name:</strong> {{ domain_name }}</p>
+    <h2>PAGE LINK EXTRACTER</h2>
+    <ul>
+    {% for result in extract_emails_results %}
         <li>{{ result }}</li>
     {% endfor %}
     </ul>

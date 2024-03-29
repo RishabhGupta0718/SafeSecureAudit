@@ -1,9 +1,0 @@
-﻿certifi==2024.2.2
-charset-normalizer==3.3.2
-idna==3.6
-PySocks==1.7.1
-python-dateutil==2.9.0.post0
-requests==2.31.0
-six==1.16.0
-sqlparse==0.4.4
-tzdata==2024.1

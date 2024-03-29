@@ -417,6 +417,16 @@ b {
         </div>
       {% endif %}
     {% endif %}
+    {% comment %} phone infooo {% endcomment %}
+    {% if tool == 'phoneinfo' %}
+    <p><strong>Phone Number:</strong> {{ domain_name }}</p>
+    <h2>PHONE INFO</h2>
+    <ul>
+          <li>Phone: {{ phone_info_results.phone_number }}</li>
+          <li>Country: {{ phone_info_results.country }}</li>
+          <li>Carrier: {{ phone_info_results.carrier }}</li>
+
+{% endif %}
     
       <!-- if tool is waf -->
       {% if tool == 'waf' %}

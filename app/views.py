@@ -67,7 +67,6 @@ def index(request):
         
         elif tool == "phoneinfo":
             phone_info_results = gather_phone_info(domain_name)
-            print(phone_info_results)
             return render(request, 'index.html', {'tool': tool, 'domain_name': domain_name, 'phone_info_results': phone_info_results})
         
         elif tool == "extract_emails":
@@ -76,17 +75,22 @@ def index(request):
         
         else:
             return render(request, 'Arbitrary_File_Upload.html', {'error_message': 'Please select provided tool on sidebar.'})
-    
-    else:
-        return render(request, 'index.html')
-
-def learning(request):
-    # return render(request,template_name="learning/Arbitrary_File_Upload.html")
-    # return render(request,template_name="learning/CRLF_Injection.html")
-    # return render(request,template_name="learning/csrf.html")
-    # return render(request,template_name="learning/xss.html")
-    # return render(request,template_name="learning/dos.html")
-    # return render(request,template_name="learning/ExposedSourceCode.html")
-    # return render(request,template_name="learning/Host Header Injection.html")
-    return render(request,template_name="learning/Insecure Direct Object References.html")
-    pass
+    if request.method == 'GET':
+        if tool == "Arbitrary_File_Upload":
+            return render(request,template_name="learning/Arbitrary_File_Upload.html")
+        elif tool == "CRLF_Injection":
+            return render(request,template_name="learning/CRLF_Injection.html")
+        elif tool == "csrf":
+            return render(request,template_name="learning/csrf.html")
+        elif tool == "xss":
+            return render(request,template_name="learning/xss.html")
+        elif tool == "dos":
+            return render(request,template_name="learning/dos.html")
+        elif tool == "ExposedSourceCode":
+            return render(request,template_name="learning/ExposedSourceCode.html")
+        elif tool == "HostHeaderInjection":
+            return render(request,template_name="learning/Host Header Injection.html")
+        elif tool == "InsecureDirectObjectReferences":
+            return render(request,template_name="learning/Insecure Direct Object References.html")
+        else:
+            return render(request,template_name="index.html")

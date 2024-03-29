@@ -9,7 +9,7 @@
     /* Navbar */
     .navbar {
       background-color: #333;
-      color: #fff;
+      color: #bc0000;
       padding: 10px;
       text-align: center;
     }
@@ -101,24 +101,42 @@
   </div>  
   <!-- Sidebar -->
   <div class="sidebar">
-    <a href="{% url 'index' %}?tool=allinone">SafeSecureAudit360</a>
-    <a href="{% url 'index' %}?tool=dnsresolvertool">DNS RESOLVER </a>
-    <a href="{% url 'index' %}?tool=dnslookuptool">LOOKUP   DEEP- error</a>
-    <a href="{% url 'index' %}?tool=reversednstool">Reverse DNS LookUp</a>
-    <a href="{% url 'index' %}?tool=waf">WAF CHECKER</a>
-    <a href="{% url 'index' %}?tool=portscanner">PORT SCAN TOOL</a>
-    <a href="{% url 'index' %}?tool=ipgeotool">Geolocation LookUp</a>
-    <a href="{% url 'index' %}?tool=page_extract">PAGE EXTRACTER</a>
-    <a href="{% url 'index' %}?tool=extract_emails">Extract Emails</a>
-    <a href="{% url 'index' %}?tool=phoneinfo">Phone Info</a>
-
+    <a href="{% url 'index' %}?tool=allinone" class="sidebar-link">SafeSecureAudit360</a>
+    <a href="{% url 'index' %}?tool=dnsresolvertool" class="sidebar-link">DNS RESOLVER </a>
+    <a href="{% url 'index' %}?tool=dnslookuptool" class="sidebar-link">LOOKUP DEEP</a>
+    <a href="{% url 'index' %}?tool=reversednstool" class="sidebar-link">Reverse DNS LookUp</a>
+    <a href="{% url 'index' %}?tool=waf" class="sidebar-link">WAF CHECKER</a>
+    <a href="{% url 'index' %}?tool=portscanner" class="sidebar-link">PORT SCAN TOOL</a>
+    <div class="dropdown">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Learning
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="{% url 'index' %}?tool=Arbitrary_File_Upload">Arbitrary_File_Upload</a>
+        <a class="dropdown-item" href="{% url 'index' %}?tool=CRLF_Injection">CRLF_Injection</a>
+        <a class="dropdown-item" href="{% url 'index' %}?tool=csrf">csrf</a>
+        <a class="dropdown-item" href="{% url 'index' %}?tool=xss">Cross Site Scripting</a>
+        <a class="dropdown-item" href="{% url 'index' %}?tool=dos">Denial of Services</a>
+        <a class="dropdown-item" href="{% url 'index' %}?tool=ExposedSourceCode">Exposed Source Code</a>
+        <a class="dropdown-item" href="{% url 'index' %}?tool=HostHeaderInjection">Host Header Injection</a>
+        <a class="dropdown-item" href="{% url 'index' %}?tool=InsecureDirectObjectReferences">Insecure Direct Object References</a>
+      </div>
+    </div>
   </div>
   <!-- Content -->
   <div class="content">{% block body %} {% endblock %}</div>
 
   <!-- Bootstrap and jQuery --> 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.sidebar-link').click(function(event) {
+        event.preventDefault(); // Prevent default behavior (page reload)
+        var url = $(this).attr('href');
+        window.location.href = url;
+      });
+    });
+  </script>
 </body>
 </html>

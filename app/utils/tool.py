@@ -19,7 +19,6 @@ def dns_record_lookup(domain_name, record_type):
 def dnslookup(domain_name):
     url = f"https://api.hackertarget.com/dnslookup/?q={domain_name}"
     response = requests.get(url)
-    
     if response.status_code == 200:
         output = {}
         lines = response.text.split('\n')

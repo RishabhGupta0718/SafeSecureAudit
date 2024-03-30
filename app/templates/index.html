@@ -17,6 +17,9 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Added styles for container scroll */
+    height: 600px; /* Adjust height as needed */
+    overflow-y: auto;
   }
 
   h1 {
@@ -223,8 +226,8 @@
 }
 b {
   display: inline-block;
-  max-width: 100%; /* Ensures the <b> tag doesn't exceed its container */
-  overflow-wrap: break-word; /* Allows long words to break and wrap onto the next line */
+  max-width: 100%; 
+  overflow-wrap: break-word;
 }
 
 </style>
@@ -246,14 +249,9 @@ b {
   <!-- Scan Results -->
   <div class="result" id="scanResult" style="display: none;">
     <h2 class="result-title">Scan Results</h2>
-    
-    <!-- Progress Container -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
       <!-- if tool is ALL API -->
     {% if tool == 'allinone' %}
-    <div class="container">
+    <div class="">
       <h1>Domain Information for <b>{{ domain_data.domain }}</b></h1>
       <div class="tool-section">
         <h2>Related Domains:</h2>

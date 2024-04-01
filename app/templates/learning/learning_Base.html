@@ -4,13 +4,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>SafeSecureAudit</title>
-    <!-- <link rel="stylesheet" href="{% static 'style.css' %}" /> -->
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
     <!-- Boxiocns CDN Link -->
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
     />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+   
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       /* Google Fonts Import Link */
@@ -34,9 +35,9 @@
         z-index: 100;
         transition: all 0.8s ease;
       }
-      .sidebar.close {
+      /* .sidebar.close {
         width: 78px;
-      }
+      } */
       .sidebar .logo-details {
         height: 60px;
         width: 100%;
@@ -77,6 +78,7 @@
       .sidebar .nav-links li {
         position: relative;
         list-style: none;
+        border-bottom: 0.5px solid rgb(43, 43, 47);
         /* transition: all 0.3s ease; */
       }
       .sidebar .nav-links li:hover {
@@ -107,16 +109,19 @@
         display: none;
       }
       .sidebar .nav-links li a {
-        display: flex;
-        align-items: center;
+        display: block;
+        text-align: left;
+        padding-left: 15px;
+        padding-bottom: 6px;
         text-decoration: none;
       }
       .sidebar .nav-links li a .link_name {
         font-size: 18px;
         font-weight: 400;
-        color: #fff;
-        transition: all 0.8s ease;
+        /* color: #fff; */
+        transition: all 0.3s ease;
       }
+
       .sidebar.close .nav-links li a .link_name {
         opacity: 0;
         pointer-events: none;
@@ -195,7 +200,7 @@
         width: 260px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-evenly;
         background: #1d1b31;
         padding: 12px 0;
         transition: all 0.8s ease;
@@ -297,31 +302,139 @@
     </style>
   </head>
   <body>
-    <div class="sidebar close">
+    <div class="sidebar">
       <div class="logo-details">
         <a href="/"><i class='bx bxs-shield-plus'></i></a>
-        <span class="logo_name">SafeSecureAudit</span>
+        <a href="/"><span class="logo_name">SSA</span></a>
       </div>
       <ul class="nav-links">
         <li>
           <a href="#">
-            <i class="bx bx-grid-alt"></i>
-            <span class="link_name">Dashboard</span>
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Networking</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Category</a></li>
-          </ul>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
         </li>
-
         <li>
           <a href="#">
-            <i class="bx bx-cog"></i>
-            <span class="link_name">Setting</span>
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Security</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Setting</a></li>
-          </ul>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
         </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Linux</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">OS Security</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Cryptography</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Web Security</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Mobile Security</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Cloud Security</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Incidence Response</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Forensics</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Ethical Hacking</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">Compliance & Standards</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">IOT Security</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+        <li>
+          <a href="#">
+            <!-- <i class="bx bx-grid-alt"></i> -->
+            <span class="link_name">AIML Security</span>
+          </a>
+          <!-- <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Networking</a></li>
+          </ul> -->
+        </li>
+
         <li>
           <div class="profile-details">
             <div class="profile-content">
@@ -331,15 +444,15 @@
               <div class="profile_name">CodeAx1</div>
               <div class="job">Cyber Security Enthusiast</div>
             </div>
-            <i class="bx bx-log-out"></i>
+            <!-- <i class="bx bx-log-out"></i> -->
           </div>
         </li>
       </ul>
     </div>
     <section class="home-section">
       <div class="home-content">
-        <i class="bx bx-menu"></i>
-        <span class="text">SafeSecureAudit</span>
+        <!-- <i class="bx bx-menu"></i> -->
+        <span class="text">Learning</span>
       </div>
       <div class="content">{% block body %} {% endblock %}</div>
     </section>

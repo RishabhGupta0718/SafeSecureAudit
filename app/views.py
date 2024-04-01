@@ -74,23 +74,34 @@ def index(request):
             return render(request, 'index.html', {'tool': tool, 'domain_name': domain_name,'extract_emails_results':extract_emails_results})
         
         else:
-            return render(request, 'Arbitrary_File_Upload.html', {'error_message': 'Please select provided tool on sidebar.'})
+            return render(request, 'index.html', {'error_message': 'Please select provided tool on sidebar.'})
+    else:
+        return render(request, 'index.html')
+def learning(request):
+    learn = request.GET.get('learn', '')
     if request.method == 'GET':
-        if tool == "Arbitrary_File_Upload":
+        if learn == "Arbitrary_File_Upload":
             return render(request,template_name="learning/Arbitrary_File_Upload.html")
-        elif tool == "CRLF_Injection":
+        elif learn == "CRLF_Injection":
             return render(request,template_name="learning/CRLF_Injection.html")
-        elif tool == "csrf":
+        elif learn == "csrf":
             return render(request,template_name="learning/csrf.html")
-        elif tool == "xss":
+        elif learn == "xss":
             return render(request,template_name="learning/xss.html")
-        elif tool == "dos":
+        elif learn == "dos":
             return render(request,template_name="learning/dos.html")
-        elif tool == "ExposedSourceCode":
+        elif learn == "ExposedSourceCode":
             return render(request,template_name="learning/ExposedSourceCode.html")
-        elif tool == "HostHeaderInjection":
+        elif learn == "HostHeaderInjection":
             return render(request,template_name="learning/Host Header Injection.html")
-        elif tool == "InsecureDirectObjectReferences":
+        elif learn == "InsecureDirectObjectReferences":
             return render(request,template_name="learning/Insecure Direct Object References.html")
         else:
-            return render(request,template_name="index.html")
+            return render(request,template_name="learning/learning.html")
+        
+def login(request):
+    return render(request,template_name="login.html")
+def login(request):
+    return render(request,template_name="login.html")
+def login(request):
+    return render(request,template_name="login.html")

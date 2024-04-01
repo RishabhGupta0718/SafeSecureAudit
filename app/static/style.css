@@ -40,8 +40,8 @@ body {
   font-size: 22px;
   color: #fff;
   font-weight: 600;
-  transition: 0.3s ease;
-  transition-delay: 0.1s;
+  transition: all 0.8s ease;
+  /* transition-delay: 0.8s; */
 }
 .sidebar.close .logo-details .logo_name {
   transition-delay: 0s;
@@ -109,7 +109,7 @@ body {
 .sidebar .nav-links li .sub-menu {
   padding: 6px 6px 14px 80px;
   margin-top: -10px;
-  background: #11101d;
+  background: #1d1b31;
   display: none;
 }
 .sidebar .nav-links li.showMenu .sub-menu {

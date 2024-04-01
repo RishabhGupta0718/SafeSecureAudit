@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SafeSecureAudit</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!-- Boxiocns CDN Link -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="sidebar close">
+      <div class="logo-details">
+        <i class="bx bxl-c-plus-plus"></i>
+        <span class="logo_name">SafeSecureAudit</span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#">
+            <i class="bx bx-grid-alt"></i>
+            <span class="link_name">Dashboard</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Category</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#">
+            <i class="bx bx-cog"></i>
+            <span class="link_name">Setting</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Setting</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="profile-details">
+            <div class="profile-content">
+              <img src="{% static 'image/profile.jpg' %}" alt="profileImg" />
+            </div>
+            <div class="name-job">
+              <div class="profile_name">CodeAx1</div>
+              <div class="job">Cyber Security Enthusiast</div>
+            </div>
+            <i class="bx bx-log-out"></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <section class="home-section">
+      <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">SafeSecureAudit</span>
+      </div>
+      <div class="content">{% block body %} {% endblock %}</div>
+    </section>
+
+    <script src="{% static 'script.js'%}"></script>
+  </body>
+</html>

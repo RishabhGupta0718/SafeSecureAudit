@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+{% block body %}
+<div class="container">
+  <h1>Mobile Number Tracker</h1>
+  <!-- Scan Form -->
+  <form id="scanForm" action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="websiteUrl">Enter Phone Number:</label>
+      <input type="text" id="websiteUrl" name="websiteUrl" placeholder="enter 10 digit number with +91" required />
+    </div>
+    <input type="submit" value="Scan" />
+  </form>
+  <!-- Scan Results -->
+  <div class="result" id="scanResult" style="display: none;">
+    <h2 class="result-title">Scan Results</h2>
+   <!-- phone infooo -->
+    {% if tool == 'phoneinfo' %}
+    <p><strong>Phone Number:</strong> {{ domain_name }}</p>
+    <h2>PHONE INFO</h2>
+    <ul>
+          <li>Phone: {{ phone_info_results.phone_number }}</li>
+          <li>Country: {{ phone_info_results.country }}</li>
+          <li>Carrier: {{ phone_info_results.carrier }}</li>
+
+{% endif %}
+{% if error_message %}
+<div class="alert alert-danger" role="alert">{{ error_message }}</div>
+{% endif %}
+
+{% endblock %}

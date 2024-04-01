@@ -1,0 +1,27 @@
+{% extends 'base.html' %} 
+{% block body %}
+<div class="container">
+  <h1>DNS LOOKUP DEEP</h1>
+  <form id="scanForm" action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="websiteUrl">Enter Website URL:</label>
+      <input type="text" id="websiteUrl" name="websiteUrl" placeholder="example.com" required />
+    </div>
+    <input type="submit" value="Scan" />
+  </form>
+  <div class="result" id="scanResult" style="display: none;">
+    <h2 class="result-title">Scan Results</h2>
+     <!-- DNS LOOKUP DEEP -->
+     {% if tool == 'dnslookuptool' %}
+     <h2>DNS Lookup Result for {{ domain_name }}</h2>
+<ul>
+{% for record_type, values in dns_results.items %}
+ <li><strong>{{ record_type }}</strong>: {{ values|join:', ' }}</li>
+{% endfor %}
+</ul>
+{% if error_message %}
+<div class="alert alert-danger" role="alert">{{ error_message }}</div>
+{% endif %}
+{% endif %}
+{% endblock %}

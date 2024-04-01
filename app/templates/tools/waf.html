@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+{% block body %}
+<div class="container">
+  <h1>Wab Application Firewall Checker</h1>
+  <!-- Scan Form -->
+  <form id="scanForm" action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="websiteUrl">Enter Website URL:</label>
+      <input type="text" id="websiteUrl" name="websiteUrl" placeholder="example.com" required />
+    </div>
+    <input type="submit" value="Scan" />
+  </form>
+
+  <!-- Scan Results -->
+  <div class="result" id="scanResult" style="display: none;">
+    <h2 class="result-title">Scan Results</h2>
+      <!-- if tool is waf -->
+      {% if tool == 'waf' %}
+  <div class="result waf-detector">
+    {% if is_cloudflare is not None %}
+      {% if is_cloudflare %}
+        <h2 class="result-title">The website is using Cloudflare.</h2>
+      {% else %}
+        <h2 class="result-title">The website is not behind Cloudflare.</h2>
+      {% endif %}
+    {% endif %}
+    {% if error_message %}
+      <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}

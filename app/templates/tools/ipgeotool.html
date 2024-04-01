@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+{% block body %}
+<div class="container">
+  <h1>Website Scanner</h1>
+  <!-- Scan Form -->
+  <form id="scanForm" action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="websiteUrl">Enter Website URL:</label>
+      <input type="text" id="websiteUrl" name="websiteUrl" placeholder="example.com" required />
+    </div>
+    <input type="submit" value="Scan" />
+  </form>
+
+  <!-- Scan Results -->
+  <div class="result" id="scanResult" style="display: none;">
+    <h2 class="result-title">Scan Results</h2>
+<!-- ip geo tool result -->
+{% if tool == "ipgeotool" %}
+    <p><strong>Domain Name or IP Address:</strong> {{ domain_name }}</p>
+    <h2>IP Geolocation Lookup</h2>
+    <ul>
+    {% for result in ipgeotool_results %}
+        <li>{{ result }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% if error_message %}
+<div class="alert alert-danger" role="alert">{{ error_message }}</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+{% block body %}
+<div class="container">
+  <h1>DNS LOOKUP BASIC
+  </h1>
+  <!-- Scan Form -->
+  <form id="scanForm" action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="websiteUrl">Enter Website URL:</label>
+      <input type="text" id="websiteUrl" name="websiteUrl" placeholder="example.com" required />
+    </div>
+    <input type="submit" value="Scan" />
+  </form>
+
+  <!-- Scan Results -->
+  <div class="result" id="scanResult" style="display: none;">
+    <h2 class="result-title">Scan Results</h2>
+            <!-- if tool is dnsresolvertool -->
+            {% if tool == 'dnsresolvertool' %}
+            <div class="result dns-resolver">
+              <h2 class="result-title">DNS Resolver Results:</h2>
+              <div class="result-details">
+                {% for record_type, records in dns_results.items %}
+                <div class="record-type">
+                  <h3>{{ record_type }}</h3>
+                  <ul class="record-list">
+                    {% for record in records %}
+                    <li>{{ record }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% if error_message %}
+            <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+          {% endif %}
+            {% endif %}     {% endblock %}

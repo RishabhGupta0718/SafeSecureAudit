@@ -1,0 +1,42 @@
+{% extends 'base.html' %} 
+{% block body %}
+<div class="container">
+  <h1>Website Scanner</h1>
+  <!-- Scan Form -->
+  <form id="scanForm" action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="websiteUrl">Enter Website URL:</label>
+      <input type="text" id="websiteUrl" name="websiteUrl" placeholder="example.com" required />
+    </div>
+    <input type="submit" value="Scan" />
+  </form>
+
+  <!-- Scan Results -->
+  <div class="result" id="scanResult" style="display: none;">
+    <h2 class="result-title">Scan Results</h2>
+      <!-- if tool is portscanner -->
+      {% if tool == 'portscanner' %}
+      {% if open_ports %}
+        <div class="result port-scanner">
+          <h2 class="result-title">Open ports and associated vulnerabilities:</h2>
+          <ul class="port-list">
+            {% for port, service in open_ports.items %}
+              <li class="port-item">
+                <span class="port-number">Port {{ port }}</span><br />
+                <span class="service">{{ service }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% else %}
+        <div class="result port-scanner">
+          <div class="alert alert-success" role="alert">No open ports found.</div>
+        </div>
+      {% endif %}
+    {% endif %}
+    {% if error_message %}
+<div class="alert alert-danger" role="alert">{{ error_message }}</div>
+{% endif %}
+
+{% endblock %}

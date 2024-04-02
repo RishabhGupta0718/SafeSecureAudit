@@ -215,7 +215,7 @@
       }
       .sidebar .profile-details .profile-content {
         display: flex;
-        align-items: center;
+        align-items: start;
       }
       .sidebar .profile-details img {
         height: 52px;
@@ -340,11 +340,7 @@
             <span class="link_name">Web Security</span>
           </a>
         </li>
-        <li>
-          <a href="{% url 'learning' %}?learn=mobile_security">
-            <span class="link_name">Mobile Security</span>
-          </a>
-        </li>
+
         <li>
           <a href="{% url 'learning' %}?learn=cloud_security">
             <span class="link_name">Cloud Security</span>
@@ -379,7 +375,10 @@
           <a href="{% url 'learning' %}?learn=ml_ai_security">
             <span class="link_name">AIML Security</span>
           </a>
-        </li><br><hr><hr>
+        </li>
+        <br />
+        <hr />
+        <hr />
         <li>
           <a href="{% url 'Allaboutbugbounty' %}">
             <span class="link_name">All About Bug Bounty</span>
@@ -390,7 +389,6 @@
             <span class="link_name">Home</span>
           </a>
         </li>
-
 
         <li>
           <div class="profile-details">

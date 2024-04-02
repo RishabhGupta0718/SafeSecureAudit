@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'learning_base.html' %}
+{% block body %}
     <title>Networking in Cybersecurity</title>
     <style>
         body {
@@ -14,7 +11,7 @@
             color: #333;
         }
         .container {
-            width: 80%;
+            width: 90%;
             margin: auto;
             padding: 20px;
             background-color: #fff;
@@ -60,11 +57,18 @@
             font-weight: bold;
             color: #000;
         }
+        .scrollable-content {
+    height: 450px; /* Adjust the height as needed */
+    overflow-y: auto;
+    padding-right: 20px; /* Add some padding to prevent content from touching the scrollbar */
+}
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Networking in Cybersecurity</h1>
+        <div class="scrollable-content">
         <p>Welcome to the world of cybersecurity! Networking forms the backbone of secure communication between devices and systems. Let's explore some key concepts together.</p>
         
         <h2>Key Networking Concepts:</h2>
@@ -90,5 +94,5 @@
         <h2>Conclusion:</h2>
         <p>Congratulations on completing this introduction to networking in cybersecurity! By mastering these concepts and implementing appropriate security measures, you are well on your way to becoming a cybersecurity expert.</p>
     </div>
-</body>
-</html>
+    </div>  
+{% endblock %}

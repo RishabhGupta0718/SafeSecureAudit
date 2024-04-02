@@ -1,0 +1,107 @@
+{% extends 'vuln10.html' %} {% block body %}
+<style>
+  .content-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 600px; /* Adjust as needed */
+  }
+
+  /* Additional styles for the SQL Injection section */
+  .content-container h2 {
+    margin-top: 20px;
+  }
+
+  .content-container h3 {
+    margin-top: 10px;
+  }
+
+  .content-container h4 {
+    margin-top: 10px;
+  }
+
+  .content-container p {
+    margin-bottom: 10px;
+  }
+
+  .content-container pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .content-container pre code {
+    font-family: Consolas, monospace;
+  }
+  .container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  .scrollable-content {
+    height: 450px; /* Adjust the height as needed */
+    overflow-y: auto;
+    padding-right: 20px;
+  }
+</style>
+<div class="container">
+  <!-- <div class="content-container"> -->
+  <h1>SQL Injection</h1>
+  <div class="scrollable-content">
+    <h2>Introduction</h2>
+    <p>
+      It is an attack in which an attacker inserts untrusted data in the
+      application that results in revealing sensitive information of the
+      database.
+    </p>
+    <p>
+      SQL Injection (SQLi) is a code injection attack where an attacker
+      manipulates the data being sent to the server to execute malicious SQL
+      statements to control a web application’s database server, thereby
+      accessing, modifying and deleting unauthorized data. This attack is mainly
+      used to take over database servers.
+    </p>
+
+    <h2>Types of SQL Injection</h2>
+    <ul>
+      <li>In-band SQLi (Classic SQLi)</li>
+      <li>Error-based SQLi</li>
+      <li>Union-based SQLi</li>
+      <li>Inferential SQLi (Blind SQLi)</li>
+      <li>Boolean-based (content-based) Blind SQLi</li>
+      <li>Time-based Blind SQLi</li>
+      <li>Out-of-band SQLi</li>
+    </ul>
+
+    <h2>Where to find</h2>
+    <p>Everywhere</p>
+
+    <h2>How to exploit</h2>
+
+    <h3>GET</h3>
+
+    <h4>Error-Based</h4>
+
+    <h4>Simple test</h4>
+    <p>Adding a simple quote '.</p>
+    <pre><code>http://vulnerable-website.com/Less-1/?id=5'</code></pre>
+
+    <!-- Add more exploitation techniques here -->
+
+    <h4>Union-Based SQLI</h4>
+
+    <h5>Simple Union Query</h5>
+    <p>Inject a union query to retrieve data from another table.</p>
+    <pre><code>http://vulnerable-website.com/Less-1/?id=-1 UNION SELECT 1,2,3</code></pre>
+
+    <!-- Add more exploitation techniques here -->
+  </div>
+  <!-- </div> -->
+</div>
+{% endblock %}

@@ -1,94 +1,176 @@
+{% extends 'learning_base.html' %} {% block body %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ML & AI Security</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #333;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        ul {
-            margin-bottom: 20px;
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-            color: #333;
-        }
-        li:before {
-            content: '\2022';
-            color: #333;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            position: absolute;
-            left: 0;
-        }
-        .emphasis {
-            font-weight: bold;
-            color: #000;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      .container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #333;
+        margin-top: 20px;
+      }
+      p {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      ul {
+        margin-bottom: 20px;
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        color: #333;
+      }
+      li:before {
+        content: "\2022";
+        color: #333;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        position: absolute;
+        left: 0;
+      }
+      .emphasis {
+        font-weight: bold;
+        color: #000;
+      }
+      .scrollable-content {
+        height: 450px; /* Adjust the height as needed */
+        overflow-y: auto;
+        padding-right: 20px; /* Add some padding to prevent content from touching the scrollbar */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>ML & AI Security</h1>
-        <p>ML & AI security focuses on protecting machine learning (ML) and artificial intelligence (AI) systems from cyber threats, vulnerabilities, and attacks. As ML & AI technologies are increasingly integrated into critical applications and decision-making processes, ensuring their security and resilience is essential to prevent misuse, manipulation, and compromise of data and models.</p>
-        
+      <h1>ML & AI Security</h1>
+      <div class="scrollable-content">
+        <p>
+          ML & AI security focuses on protecting machine learning (ML) and
+          artificial intelligence (AI) systems from cyber threats,
+          vulnerabilities, and attacks. As ML & AI technologies are increasingly
+          integrated into critical applications and decision-making processes,
+          ensuring their security and resilience is essential to prevent misuse,
+          manipulation, and compromise of data and models.
+        </p>
+
         <h2>Challenges in ML & AI Security:</h2>
         <ul>
-            <li><span class="emphasis">Data Poisoning:</span> Adversarial attackers can manipulate training data to introduce biases, vulnerabilities, or backdoors into ML models, leading to inaccurate predictions or unauthorized access.</li>
-            <li><span class="emphasis">Model Evasion:</span> Adversarial examples can be crafted to exploit vulnerabilities in ML models and bypass detection or classification systems, potentially leading to false positives or negatives.</li>
-            <li><span class="emphasis">Privacy Risks:</span> ML & AI systems may inadvertently leak sensitive information or violate user privacy through data inference, model inversion attacks, or membership inference attacks.</li>
-            <li><span class="emphasis">Model Stealing:</span> Attackers can reverse-engineer ML models or extract proprietary information from them by querying the model with carefully crafted inputs and observing its responses.</li>
-            <li><span class="emphasis">Model Poisoning:</span> Malicious actors can inject poisoned data or malicious samples into ML training datasets to compromise model integrity, degrade performance, or manipulate decision outcomes.</li>
-            <li><span class="emphasis">Explainability and Interpretability:</span> Black-box ML models may lack transparency and interpretability, making it difficult to understand their inner workings, detect biases, or explain their decisions to stakeholders.</li>
+          <li>
+            <span class="emphasis">Data Poisoning:</span> Adversarial attackers
+            can manipulate training data to introduce biases, vulnerabilities,
+            or backdoors into ML models, leading to inaccurate predictions or
+            unauthorized access.
+          </li>
+          <li>
+            <span class="emphasis">Model Evasion:</span> Adversarial examples
+            can be crafted to exploit vulnerabilities in ML models and bypass
+            detection or classification systems, potentially leading to false
+            positives or negatives.
+          </li>
+          <li>
+            <span class="emphasis">Privacy Risks:</span> ML & AI systems may
+            inadvertently leak sensitive information or violate user privacy
+            through data inference, model inversion attacks, or membership
+            inference attacks.
+          </li>
+          <li>
+            <span class="emphasis">Model Stealing:</span> Attackers can
+            reverse-engineer ML models or extract proprietary information from
+            them by querying the model with carefully crafted inputs and
+            observing its responses.
+          </li>
+          <li>
+            <span class="emphasis">Model Poisoning:</span> Malicious actors can
+            inject poisoned data or malicious samples into ML training datasets
+            to compromise model integrity, degrade performance, or manipulate
+            decision outcomes.
+          </li>
+          <li>
+            <span class="emphasis">Explainability and Interpretability:</span>
+            Black-box ML models may lack transparency and interpretability,
+            making it difficult to understand their inner workings, detect
+            biases, or explain their decisions to stakeholders.
+          </li>
         </ul>
-        
+
         <h2>Security Measures for ML & AI:</h2>
         <ul>
-            <li><span class="emphasis">Secure Development Practices:</span> Adopt secure coding practices and design principles to build robust, resilient, and secure ML & AI systems from the ground up.</li>
-            <li><span class="emphasis">Data Sanitization:</span> Implement data preprocessing and validation techniques to detect and remove anomalies, outliers, or malicious inputs from training datasets.</li>
-            <li><span class="emphasis">Adversarial Defense:</span> Employ adversarial training, robust optimization, or model diversification techniques to enhance ML model resilience against adversarial attacks.</li>
-            <li><span class="emphasis">Privacy-Preserving Techniques:</span> Use differential privacy, federated learning, or homomorphic encryption to protect sensitive data and preserve user privacy in ML & AI systems.</li>
-            <li><span class="emphasis">Model Verification and Validation:</span> Perform rigorous testing, validation, and verification of ML models to ensure correctness, reliability, and safety under various conditions and scenarios.</li>
-            <li><span class="emphasis">Explainable AI:</span> Develop interpretable and explainable ML models that provide insights into their decision-making process, rationale, and underlying features.</li>
+          <li>
+            <span class="emphasis">Secure Development Practices:</span> Adopt
+            secure coding practices and design principles to build robust,
+            resilient, and secure ML & AI systems from the ground up.
+          </li>
+          <li>
+            <span class="emphasis">Data Sanitization:</span> Implement data
+            preprocessing and validation techniques to detect and remove
+            anomalies, outliers, or malicious inputs from training datasets.
+          </li>
+          <li>
+            <span class="emphasis">Adversarial Defense:</span> Employ
+            adversarial training, robust optimization, or model diversification
+            techniques to enhance ML model resilience against adversarial
+            attacks.
+          </li>
+          <li>
+            <span class="emphasis">Privacy-Preserving Techniques:</span> Use
+            differential privacy, federated learning, or homomorphic encryption
+            to protect sensitive data and preserve user privacy in ML & AI
+            systems.
+          </li>
+          <li>
+            <span class="emphasis">Model Verification and Validation:</span>
+            Perform rigorous testing, validation, and verification of ML models
+            to ensure correctness, reliability, and safety under various
+            conditions and scenarios.
+          </li>
+          <li>
+            <span class="emphasis">Explainable AI:</span> Develop interpretable
+            and explainable ML models that provide insights into their
+            decision-making process, rationale, and underlying features.
+          </li>
         </ul>
-        
+
         <h2>Future Directions:</h2>
-        <p>As ML & AI technologies continue to evolve and proliferate, addressing security challenges and advancing security measures will be critical to unlock their full potential and maximize their societal impact. Research efforts in ML & AI security should focus on developing innovative techniques, tools, and frameworks to proactively detect, prevent, and mitigate emerging threats and vulnerabilities, thereby ensuring the trustworthiness, reliability, and safety of ML & AI systems in real-world applications.</p>
+        <p>
+          As ML & AI technologies continue to evolve and proliferate, addressing
+          security challenges and advancing security measures will be critical
+          to unlock their full potential and maximize their societal impact.
+          Research efforts in ML & AI security should focus on developing
+          innovative techniques, tools, and frameworks to proactively detect,
+          prevent, and mitigate emerging threats and vulnerabilities, thereby
+          ensuring the trustworthiness, reliability, and safety of ML & AI
+          systems in real-world applications.
+        </p>
+      </div>
     </div>
-</body>
+  </body>
 </html>
+{% endblock %}

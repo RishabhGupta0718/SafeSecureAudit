@@ -1,102 +1,212 @@
+{% extends 'learning_base.html' %} {% block body %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Security Compliance and Standards</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #333;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        ul {
-            margin-bottom: 20px;
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-            color: #333;
-        }
-        li:before {
-            content: '\2022';
-            color: #333;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            position: absolute;
-            left: 0;
-        }
-        .emphasis {
-            font-weight: bold;
-            color: #000;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      .container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #333;
+        margin-top: 20px;
+      }
+      p {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      ul {
+        margin-bottom: 20px;
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        color: #333;
+      }
+      li:before {
+        content: "\2022";
+        color: #333;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        position: absolute;
+        left: 0;
+      }
+      .emphasis {
+        font-weight: bold;
+        color: #000;
+      }
+      .scrollable-content {
+        height: 450px; /* Adjust the height as needed */
+        overflow-y: auto;
+        padding-right: 20px; /* Add some padding to prevent content from touching the scrollbar */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Security Compliance and Standards</h1>
-        <p>Security compliance and standards are frameworks, guidelines, and regulations that organizations adhere to in order to ensure the confidentiality, integrity, and availability of their information assets and IT systems. Compliance with these standards helps organizations mitigate security risks, protect sensitive data, and demonstrate their commitment to security best practices.</p>
-        
+      <h1>Security Compliance and Standards</h1>
+      <div class="scrollable-content">
+        <p>
+          Security compliance and standards are frameworks, guidelines, and
+          regulations that organizations adhere to in order to ensure the
+          confidentiality, integrity, and availability of their information
+          assets and IT systems. Compliance with these standards helps
+          organizations mitigate security risks, protect sensitive data, and
+          demonstrate their commitment to security best practices.
+        </p>
+
         <h2>Key Security Compliance Frameworks and Standards:</h2>
         <ul>
-            <li><span class="emphasis">ISO/IEC 27001:</span> ISO/IEC 27001 is an international standard that specifies the requirements for establishing, implementing, maintaining, and continually improving an information security management system (ISMS) within the context of the organization's overall business risks.</li>
-            <li><span class="emphasis">NIST Cybersecurity Framework (CSF):</span> The NIST CSF provides a voluntary framework of cybersecurity standards, guidelines, and best practices for managing and reducing cybersecurity risks to critical infrastructure based on business objectives and risk tolerance.</li>
-            <li><span class="emphasis">PCI DSS:</span> The Payment Card Industry Data Security Standard (PCI DSS) is a set of security standards designed to ensure that all companies that accept, process, store, or transmit credit card information maintain a secure environment to protect cardholder data.</li>
-            <li><span class="emphasis">HIPAA:</span> The Health Insurance Portability and Accountability Act (HIPAA) sets the standard for protecting sensitive patient data, ensuring the confidentiality, integrity, and availability of electronic protected health information (ePHI).</li>
-            <li><span class="emphasis">GDPR:</span> The General Data Protection Regulation (GDPR) is a regulation in EU law on data protection and privacy for all individual citizens of the European Union (EU) and the European Economic Area (EEA), as well as the transfer of personal data outside the EU and EEA areas.</li>
-            <li><span class="emphasis">SOC 2:</span> SOC 2 (Service Organization Control 2) reports on controls at a service organization relevant to security, availability, processing integrity, confidentiality, and privacy, based on the AICPA's Trust Services Criteria.</li>
+          <li>
+            <span class="emphasis">ISO/IEC 27001:</span> ISO/IEC 27001 is an
+            international standard that specifies the requirements for
+            establishing, implementing, maintaining, and continually improving
+            an information security management system (ISMS) within the context
+            of the organization's overall business risks.
+          </li>
+          <li>
+            <span class="emphasis">NIST Cybersecurity Framework (CSF):</span>
+            The NIST CSF provides a voluntary framework of cybersecurity
+            standards, guidelines, and best practices for managing and reducing
+            cybersecurity risks to critical infrastructure based on business
+            objectives and risk tolerance.
+          </li>
+          <li>
+            <span class="emphasis">PCI DSS:</span> The Payment Card Industry
+            Data Security Standard (PCI DSS) is a set of security standards
+            designed to ensure that all companies that accept, process, store,
+            or transmit credit card information maintain a secure environment to
+            protect cardholder data.
+          </li>
+          <li>
+            <span class="emphasis">HIPAA:</span> The Health Insurance
+            Portability and Accountability Act (HIPAA) sets the standard for
+            protecting sensitive patient data, ensuring the confidentiality,
+            integrity, and availability of electronic protected health
+            information (ePHI).
+          </li>
+          <li>
+            <span class="emphasis">GDPR:</span> The General Data Protection
+            Regulation (GDPR) is a regulation in EU law on data protection and
+            privacy for all individual citizens of the European Union (EU) and
+            the European Economic Area (EEA), as well as the transfer of
+            personal data outside the EU and EEA areas.
+          </li>
+          <li>
+            <span class="emphasis">SOC 2:</span> SOC 2 (Service Organization
+            Control 2) reports on controls at a service organization relevant to
+            security, availability, processing integrity, confidentiality, and
+            privacy, based on the AICPA's Trust Services Criteria.
+          </li>
         </ul>
-        
+
         <h2>Benefits of Security Compliance:</h2>
         <ul>
-            <li><span class="emphasis">Risk Management:</span> Compliance frameworks help organizations identify, assess, and mitigate security risks associated with their operations, systems, and data assets.</li>
-            <li><span class="emphasis">Data Protection:</span> Compliance with security standards ensures the protection of sensitive data from unauthorized access, disclosure, or loss, safeguarding customer privacy and organizational reputation.</li>
-            <li><span class="emphasis">Regulatory Compliance:</span> Compliance with industry regulations and legal requirements helps organizations avoid fines, penalties, and legal liabilities associated with non-compliance.</li>
-            <li><span class="emphasis">Customer Trust:</span> Demonstrating compliance with security standards instills confidence and trust in customers, partners, and stakeholders, enhancing business relationships and market competitiveness.</li>
-            <li><span class="emphasis">Continuous Improvement:</span> Compliance frameworks promote a culture of continuous improvement by establishing policies, procedures, and controls for monitoring, assessing, and enhancing security practices over time.</li>
+          <li>
+            <span class="emphasis">Risk Management:</span> Compliance frameworks
+            help organizations identify, assess, and mitigate security risks
+            associated with their operations, systems, and data assets.
+          </li>
+          <li>
+            <span class="emphasis">Data Protection:</span> Compliance with
+            security standards ensures the protection of sensitive data from
+            unauthorized access, disclosure, or loss, safeguarding customer
+            privacy and organizational reputation.
+          </li>
+          <li>
+            <span class="emphasis">Regulatory Compliance:</span> Compliance with
+            industry regulations and legal requirements helps organizations
+            avoid fines, penalties, and legal liabilities associated with
+            non-compliance.
+          </li>
+          <li>
+            <span class="emphasis">Customer Trust:</span> Demonstrating
+            compliance with security standards instills confidence and trust in
+            customers, partners, and stakeholders, enhancing business
+            relationships and market competitiveness.
+          </li>
+          <li>
+            <span class="emphasis">Continuous Improvement:</span> Compliance
+            frameworks promote a culture of continuous improvement by
+            establishing policies, procedures, and controls for monitoring,
+            assessing, and enhancing security practices over time.
+          </li>
         </ul>
-        
+
         <h2>Challenges of Security Compliance:</h2>
         <ul>
-            <li><span class="emphasis">Complexity:</span> Security compliance requirements can be complex, requiring significant resources, expertise, and coordination across different departments and stakeholders within an organization.</li>
-            <li><span class="emphasis">Cost:</span> Achieving and maintaining compliance with security standards often involves substantial financial investments in technology, training, and audits, especially for small and medium-sized enterprises (SMEs).</li>
-            <li><span class="emphasis">Evolution:</span> Security compliance frameworks and regulations are constantly evolving in response to emerging threats, technologies, and regulatory changes, requiring organizations to adapt and update their security practices accordingly.</li>
-            <li><span class="emphasis">Audit Fatigue:</span> Compliance audits and assessments can be time-consuming, disruptive, and resource-intensive, leading to audit fatigue and potential compliance gaps if not managed effectively.</li>
-            <li><span class="emphasis">Interoperability:</span> Organizations operating in multiple jurisdictions or industries may face challenges in aligning and harmonizing different security compliance requirements and standards, resulting in compliance complexities and inconsistencies.</li>
+          <li>
+            <span class="emphasis">Complexity:</span> Security compliance
+            requirements can be complex, requiring significant resources,
+            expertise, and coordination across different departments and
+            stakeholders within an organization.
+          </li>
+          <li>
+            <span class="emphasis">Cost:</span> Achieving and maintaining
+            compliance with security standards often involves substantial
+            financial investments in technology, training, and audits,
+            especially for small and medium-sized enterprises (SMEs).
+          </li>
+          <li>
+            <span class="emphasis">Evolution:</span> Security compliance
+            frameworks and regulations are constantly evolving in response to
+            emerging threats, technologies, and regulatory changes, requiring
+            organizations to adapt and update their security practices
+            accordingly.
+          </li>
+          <li>
+            <span class="emphasis">Audit Fatigue:</span> Compliance audits and
+            assessments can be time-consuming, disruptive, and
+            resource-intensive, leading to audit fatigue and potential
+            compliance gaps if not managed effectively.
+          </li>
+          <li>
+            <span class="emphasis">Interoperability:</span> Organizations
+            operating in multiple jurisdictions or industries may face
+            challenges in aligning and harmonizing different security compliance
+            requirements and standards, resulting in compliance complexities and
+            inconsistencies.
+          </li>
         </ul>
-        
+
         <h2>Conclusion:</h2>
-        <p>Security compliance and standards play a crucial role in helping organizations establish, maintain, and enhance their cybersecurity posture to protect against evolving threats, regulatory requirements, and industry best practices. By adopting a risk-based approach, investing in security controls, and staying abreast of regulatory changes, organizations can effectively manage security risks, protect sensitive data, and maintain trust and confidence in their operations.</p>
+        <p>
+          Security compliance and standards play a crucial role in helping
+          organizations establish, maintain, and enhance their cybersecurity
+          posture to protect against evolving threats, regulatory requirements,
+          and industry best practices. By adopting a risk-based approach,
+          investing in security controls, and staying abreast of regulatory
+          changes, organizations can effectively manage security risks, protect
+          sensitive data, and maintain trust and confidence in their operations.
+        </p>
+      </div>
     </div>
-</body>
+  </body>
 </html>
+{% endblock %}

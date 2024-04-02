@@ -1,104 +1,214 @@
+{% extends 'learning_base.html' %} {% block body %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Security Fundamentals</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #333;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        ul {
-            margin-bottom: 20px;
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-            color: #333;
-        }
-        li:before {
-            content: '\2022';
-            color: #333;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            position: absolute;
-            left: 0;
-        }
-        .emphasis {
-            font-weight: bold;
-            color: #000;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      .container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #333;
+        margin-top: 20px;
+      }
+      p {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      ul {
+        margin-bottom: 20px;
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        color: #333;
+      }
+      li:before {
+        content: "\2022";
+        color: #333;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        position: absolute;
+        left: 0;
+      }
+      .emphasis {
+        font-weight: bold;
+        color: #000;
+      }
+      .scrollable-content {
+        height: 450px; /* Adjust the height as needed */
+        overflow-y: auto;
+        padding-right: 20px; /* Add some padding to prevent content from touching the scrollbar */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Security Fundamentals</h1>
-        <p>Security fundamentals encompass the basic principles, concepts, and practices that form the foundation of effective cybersecurity. Understanding these fundamentals is essential for building secure systems, protecting sensitive data, and mitigating security risks in today's interconnected and digital world.</p>
-        
+      <h1>Security Fundamentals</h1>
+      <div class="scrollable-content">
+        <p>
+          Security fundamentals encompass the basic principles, concepts, and
+          practices that form the foundation of effective cybersecurity.
+          Understanding these fundamentals is essential for building secure
+          systems, protecting sensitive data, and mitigating security risks in
+          today's interconnected and digital world.
+        </p>
+
         <h2>Key Security Fundamentals:</h2>
         <ul>
-            <li><span class="emphasis">Confidentiality:</span> Confidentiality ensures that sensitive information is accessible only to authorized users, preventing unauthorized access, disclosure, or exposure of sensitive data.</li>
-            <li><span class="emphasis">Integrity:</span> Integrity ensures the accuracy, consistency, and trustworthiness of data and resources by protecting them against unauthorized modification, tampering, or alteration.</li>
-            <li><span class="emphasis">Availability:</span> Availability ensures that systems, services, and data are accessible and usable when needed, minimizing downtime, disruptions, and service outages.</li>
-            <li><span class="emphasis">Authentication:</span> Authentication verifies the identity of users, devices, or entities accessing systems or resources, ensuring that only authorized entities are granted access to sensitive data and functionalities.</li>
-            <li><span class="emphasis">Authorization:</span> Authorization defines and enforces access controls and permissions to restrict user privileges and activities based on their roles, responsibilities, and least privilege principles.</li>
-            <li><span class="emphasis">Non-repudiation:</span> Non-repudiation ensures that actions or transactions performed by users or entities are irrefutable and cannot be denied or repudiated later, providing accountability and traceability for security incidents.</li>
+          <li>
+            <span class="emphasis">Confidentiality:</span> Confidentiality
+            ensures that sensitive information is accessible only to authorized
+            users, preventing unauthorized access, disclosure, or exposure of
+            sensitive data.
+          </li>
+          <li>
+            <span class="emphasis">Integrity:</span> Integrity ensures the
+            accuracy, consistency, and trustworthiness of data and resources by
+            protecting them against unauthorized modification, tampering, or
+            alteration.
+          </li>
+          <li>
+            <span class="emphasis">Availability:</span> Availability ensures
+            that systems, services, and data are accessible and usable when
+            needed, minimizing downtime, disruptions, and service outages.
+          </li>
+          <li>
+            <span class="emphasis">Authentication:</span> Authentication
+            verifies the identity of users, devices, or entities accessing
+            systems or resources, ensuring that only authorized entities are
+            granted access to sensitive data and functionalities.
+          </li>
+          <li>
+            <span class="emphasis">Authorization:</span> Authorization defines
+            and enforces access controls and permissions to restrict user
+            privileges and activities based on their roles, responsibilities,
+            and least privilege principles.
+          </li>
+          <li>
+            <span class="emphasis">Non-repudiation:</span> Non-repudiation
+            ensures that actions or transactions performed by users or entities
+            are irrefutable and cannot be denied or repudiated later, providing
+            accountability and traceability for security incidents.
+          </li>
         </ul>
-        
+
         <h2>Security Controls:</h2>
-        <p>Security controls are safeguards or countermeasures implemented to protect against security risks and vulnerabilities. Common security controls include:</p>
+        <p>
+          Security controls are safeguards or countermeasures implemented to
+          protect against security risks and vulnerabilities. Common security
+          controls include:
+        </p>
         <ul>
-            <li><span class="emphasis">Preventive Controls:</span> Preventive controls aim to prevent security incidents from occurring by proactively mitigating risks and vulnerabilities. Examples include firewalls, access controls, encryption, and security policies.</li>
-            <li><span class="emphasis">Detective Controls:</span> Detective controls aim to detect security incidents or violations after they occur, enabling timely response and mitigation. Examples include intrusion detection systems (IDS), security monitoring, and log analysis.</li>
-            <li><span class="emphasis">Corrective Controls:</span> Corrective controls aim to correct and remediate security incidents or vulnerabilities identified through preventive or detective controls. Examples include incident response procedures, patch management, and system recovery mechanisms.</li>
-            <li><span class="emphasis">Compensating Controls:</span> Compensating controls are alternative measures implemented to mitigate security risks or achieve compliance when primary controls are not feasible or effective. Examples include risk assessments, compensating controls, and security awareness training.</li>
+          <li>
+            <span class="emphasis">Preventive Controls:</span> Preventive
+            controls aim to prevent security incidents from occurring by
+            proactively mitigating risks and vulnerabilities. Examples include
+            firewalls, access controls, encryption, and security policies.
+          </li>
+          <li>
+            <span class="emphasis">Detective Controls:</span> Detective controls
+            aim to detect security incidents or violations after they occur,
+            enabling timely response and mitigation. Examples include intrusion
+            detection systems (IDS), security monitoring, and log analysis.
+          </li>
+          <li>
+            <span class="emphasis">Corrective Controls:</span> Corrective
+            controls aim to correct and remediate security incidents or
+            vulnerabilities identified through preventive or detective controls.
+            Examples include incident response procedures, patch management, and
+            system recovery mechanisms.
+          </li>
+          <li>
+            <span class="emphasis">Compensating Controls:</span> Compensating
+            controls are alternative measures implemented to mitigate security
+            risks or achieve compliance when primary controls are not feasible
+            or effective. Examples include risk assessments, compensating
+            controls, and security awareness training.
+          </li>
         </ul>
-        
+
         <h2>Security Best Practices:</h2>
-        <p>Adhering to security best practices is essential for maintaining effective security posture and mitigating security risks. Some key security best practices include:</p>
+        <p>
+          Adhering to security best practices is essential for maintaining
+          effective security posture and mitigating security risks. Some key
+          security best practices include:
+        </p>
         <ul>
-            <li><span class="emphasis">Risk Assessment:</span> Conduct regular risk assessments to identify, prioritize, and mitigate security risks and vulnerabilities based on their likelihood and potential impact on the organization.</li>
-            <li><span class="emphasis">Security Awareness:</span> Educate employees, users, and stakeholders about security risks, threats, and best practices through security awareness training, newsletters, and simulated phishing exercises.</li>
-            <li><span class="emphasis">Patch Management:</span> Keep systems, applications, and software up to date with the latest security patches and updates to address known vulnerabilities and mitigate exploitation risks.</li>
-            <li><span class="emphasis">Access Controls:</span> Implement strong access controls, least privilege principles, and user authentication mechanisms to restrict unauthorized access to sensitive data and resources.</li>
-            <li><span class="emphasis">Encryption:</span> Encrypt sensitive data at rest and in transit using encryption algorithms and protocols to protect against unauthorized access, disclosure, or tampering.</li>
-            <li><span class="emphasis">Incident Response:</span> Develop and implement incident response procedures, playbooks, and communication plans to effectively respond to and recover from security incidents and breaches.</li>
+          <li>
+            <span class="emphasis">Risk Assessment:</span> Conduct regular risk
+            assessments to identify, prioritize, and mitigate security risks and
+            vulnerabilities based on their likelihood and potential impact on
+            the organization.
+          </li>
+          <li>
+            <span class="emphasis">Security Awareness:</span> Educate employees,
+            users, and stakeholders about security risks, threats, and best
+            practices through security awareness training, newsletters, and
+            simulated phishing exercises.
+          </li>
+          <li>
+            <span class="emphasis">Patch Management:</span> Keep systems,
+            applications, and software up to date with the latest security
+            patches and updates to address known vulnerabilities and mitigate
+            exploitation risks.
+          </li>
+          <li>
+            <span class="emphasis">Access Controls:</span> Implement strong
+            access controls, least privilege principles, and user authentication
+            mechanisms to restrict unauthorized access to sensitive data and
+            resources.
+          </li>
+          <li>
+            <span class="emphasis">Encryption:</span> Encrypt sensitive data at
+            rest and in transit using encryption algorithms and protocols to
+            protect against unauthorized access, disclosure, or tampering.
+          </li>
+          <li>
+            <span class="emphasis">Incident Response:</span> Develop and
+            implement incident response procedures, playbooks, and communication
+            plans to effectively respond to and recover from security incidents
+            and breaches.
+          </li>
         </ul>
-        
+
         <h2>Conclusion:</h2>
-        <p>Security fundamentals provide the basis for building a strong cybersecurity foundation and mitigating security risks in organizations of all sizes and industries. By understanding and implementing key security principles, controls, and best practices, organizations can protect their assets, data, and reputation from evolving threats and vulnerabilities.</p>
+        <p>
+          Security fundamentals provide the basis for building a strong
+          cybersecurity foundation and mitigating security risks in
+          organizations of all sizes and industries. By understanding and
+          implementing key security principles, controls, and best practices,
+          organizations can protect their assets, data, and reputation from
+          evolving threats and vulnerabilities.
+        </p>
+      </div>
     </div>
-</body>
+  </body>
 </html>
+{% endblock %}

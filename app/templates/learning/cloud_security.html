@@ -4,7 +4,7 @@
     <title>Cloud Security</title>
     <style>
         .container {
-            width: 80%;
+            width: 90%;
             margin: auto;
             padding: 20px;
             background-color: #fff;
@@ -50,13 +50,20 @@
             font-weight: bold;
             color: #000;
         }
+        .scrollable-content {
+    height: 450px; /* Adjust the height as needed */
+    overflow-y: auto;
+    padding-right: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Cloud Security</h1>
-        <p>Cloud security refers to the practices, technologies, and policies implemented to protect data, applications, and infrastructure hosted in cloud environments. As organizations increasingly adopt cloud computing services, ensuring robust security measures becomes paramount to safeguard sensitive information and maintain regulatory compliance.</p>
-        
+        <div class="scrollable-content">
+
+            <p>Cloud security refers to the practices, technologies, and policies implemented to protect data, applications, and infrastructure hosted in cloud environments. As organizations increasingly adopt cloud computing services, ensuring robust security measures becomes paramount to safeguard sensitive information and maintain regulatory compliance.</p>
+            
         <h2>Key Aspects of Cloud Security:</h2>
         <ul>
             <li><span class="emphasis">Data Encryption:</span> Encrypting data at rest and in transit helps prevent unauthorized access and ensures confidentiality.</li>
@@ -77,5 +84,6 @@
         
         <h2>Conclusion:</h2>
         <p>Cloud security is a multifaceted discipline aimed at protecting cloud-based assets from various threats and vulnerabilities. By implementing robust security controls, adopting best practices, and staying vigilant against emerging threats, organizations can harness the benefits of cloud computing while maintaining a secure and resilient environment.</p>
+    </div>
     </div> 
 {% endblock %}

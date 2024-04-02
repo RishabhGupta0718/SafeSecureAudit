@@ -1,0 +1,110 @@
+{% extends 'vuln10.html' %} {% block body %}
+<style>
+  .content-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 600px; /* Adjust as needed */
+  }
+
+  /* Additional styles for the OAuth Misconfiguration section */
+  .content-container h2 {
+    margin-top: 20px;
+  }
+
+  .content-container h3 {
+    margin-top: 10px;
+  }
+
+  .content-container h4 {
+    margin-top: 10px;
+  }
+
+  .content-container p {
+    margin-bottom: 10px;
+  }
+
+  .content-container pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .content-container pre code {
+    font-family: Consolas, monospace;
+  }
+
+  .container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  .scrollable-content {
+    height: 450px; /* Adjust the height as needed */
+    overflow-y: auto;
+    padding-right: 20px;
+  }
+</style>
+
+<div class="container">
+  <h1>OAuth Misconfiguration</h1>
+  <div class="scrollable-content">
+    <h2>Introduction</h2>
+    <p>
+      The most infamous OAuth-based vulnerability is when the configuration of
+      the OAuth service itself enables attackers to steal authorization codes or
+      access tokens associated with other users’ accounts. By stealing a valid
+      code or token, the attacker may be able to access the victim's account.
+    </p>
+
+    <h2>How to exploit</h2>
+
+    <h3>
+      OAuth token stealing by changing <code>redirect_uri</code> and Use IDN
+      Homograph
+    </h3>
+    <pre><code>&redirect_uri=https://example.com</code></pre>
+    <pre><code>&redirect_uri=https://еxamplе.com</code></pre>
+    <p>If you notice, im not using the normal <code>e</code></p>
+
+    <!-- Additional exploitation techniques -->
+    <h3>
+      Create an account with victim@gmail.com with normal functionality. Create
+      account with victim@gmail.com using OAuth functionality. Now try to login
+      using previous credentials.
+    </h3>
+
+    <h3>OAuth Token Re-use.</h3>
+
+    <h3>Improper handling of state parameter</h3>
+    <p>
+      To exploit this, go through the authorization process under your account
+      and pause immediately after authorization. Then send this URL to the
+      logged-in victim
+    </p>
+    <pre><code>&lt;a href="https://example.com/authorize?client_id=client1&amp;response_type=code&amp;redirect_uri=http://callback&amp;scope=openid+email+profile"&gt;Press Here&lt;/a&gt;</code></pre>
+
+    <h3>Lack of origin check.</h3>
+
+    <h3>Open Redirection on <code>redirect_uri</code> parameter</h3>
+    <pre><code>&redirect_uri=https://example.com</code></pre>
+    <pre><code>&redirect_uri=https://evil.com</code></pre>
+    <pre><code>&redirect_uri=https://example.com.evil.com</code></pre>
+
+    <h3>
+      If there is an email parameter after signin then try to change the email
+      parameter to victim's one.
+    </h3>
+
+    <h3>Try to remove email from the scope and add victim's email manually.</h3>
+
+    <h3>Check if its leaking <code>client_secret</code></h3>
+  </div>
+</div>
+{% endblock %}

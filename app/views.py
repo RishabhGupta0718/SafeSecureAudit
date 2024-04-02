@@ -3,6 +3,8 @@ from .utils import portscanner
 from .utils.tool import dns_record_lookup,dnslookup,reverse_dns,ipgeotool,page_extract,extract_emails,fetch_all_in_one_data
 from .utils.waf import check_cloudflare
 from .utils.phone_info_tool import gather_phone_info
+import requests
+import json
 
 def index(request):
     tool = request.GET.get('tool', '')
@@ -26,7 +28,7 @@ def index(request):
             for record_type in record_types:
                 dns_results[record_type] = dns_record_lookup(domain_name, record_type)
             context = {'tool': tool, 'dns_results': dns_results}
-            return render(request, 'index.html', context)
+            return render(request, 'tools/dnsresolvertool.html', context)
         
         elif tool == "dnslookuptool":
             dns_results = dnslookup(domain_name)
@@ -72,8 +74,41 @@ def index(request):
             extract_emails_results = extract_emails(domain_name)
             return render(request, 'tools/extract_emails.html', {'tool': tool, 'domain_name': domain_name,'extract_emails_results':extract_emails_results})
         
+        elif tool == "breachdata":
+            url = "https://credential-verification.p.rapidapi.com/restpeopleMOB/MA/MaWcf.svc/Makshouf"
+            payload = {
+                "Service_Flag": "",
+                "Criterias": [
+                    {
+                "Field": "page",
+                "Value": "1"
+                    },
+                    {
+                "Field": "SEARCH_KEY",
+                "Value": domain_name
+                    }
+                ]
+            }
+            headers = {
+                "content-type": "application/json",
+                "X-RapidAPI-Key": "9814b3a6d1msh41b9e25311f05bap13521ejsn9147e8e70ae1",
+                "X-RapidAPI-Host": "credential-verification.p.rapidapi.com"
+            }
+            response = requests.post(url, json=payload, headers=headers)
+            result = response.json()
+
+            summary = []
+            if 'Count' in result and result['Count'] > 0:
+                message = result['Message']
+                breaches = json.loads(result['Result'])  # Parsing the JSON string
+                for breach in breaches:
+                    summary.append({'breach_name': breach.get('BREACH_NAME', ''),
+                            'breach_summary': breach.get('BREACH_SUMMARY', '')})
+
+            return render(request, 'tools/breachdata.html', {"message": message, "tool": tool, 'domain_name': domain_name, 'summary': summary})
         else:
             return render(request, 'index.html', {'error_message': 'Please select provided tool on sidebar.'})
+        
     if request.method == 'GET':
         if tool == "allinone":
              return render(request, 'tools/allinone.html')
@@ -104,8 +139,8 @@ def index(request):
         
         elif tool == "extract_emails":
             return render(request, 'tools/extract_emails.html')
-        elif tool == "brachdata":
-            return render(request, 'tools/brachdata.html')
+        elif tool == "breachdata":
+            return render(request, 'tools/breachdata.html')
         else:
             return render(request, 'index.html', {'error_message': 'Please select provided tool on sidebar.'})
 
@@ -118,7 +153,7 @@ def learning(request):
         elif learn == "cryptography":
             return render(request,template_name="learning/cryptography.html")
         elif learn == "ethical_hacking":
-            return render(request,template_name="learning/etḥical_hacking.html")
+            return render(request,template_name="learning/ethical_hacking.html")
         elif learn == "forensics":
             return render(request,template_name="learning/forensics.html")
         elif learn == "incident":
@@ -173,8 +208,6 @@ def Allaboutbugbounty(request):
             return render(request,template_name="vuln10/Web Cache Poisoning.html")
         elif vuln10 == "OAuthMisconfiguration":
             return render(request,template_name="vuln10/OAuth Misconfiguration.html")
-        elif vuln10 == "LocalFileInclusion.":
-            return render(request,template_name="vuln10/Local File Inclusion.html")
         else:
             return render(request,template_name="vuln10.html")
 

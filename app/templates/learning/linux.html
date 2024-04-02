@@ -1,100 +1,165 @@
+{% extends 'learning_base.html' %} {% block body %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Linux Fundamentals and Commands</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #333;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        ul {
-            margin-bottom: 20px;
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-            color: #333;
-        }
-        li:before {
-            content: '\2022';
-            color: #333;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            position: absolute;
-            left: 0;
-        }
-        .emphasis {
-            font-weight: bold;
-            color: #000;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      .container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #333;
+        margin-top: 20px;
+      }
+      p {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      ul {
+        margin-bottom: 20px;
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        color: #333;
+      }
+      li:before {
+        content: "\2022";
+        color: #333;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        position: absolute;
+        left: 0;
+      }
+      .emphasis {
+        font-weight: bold;
+        color: #000;
+      }
+      .scrollable-content {
+        height: 450px; /* Adjust the height as needed */
+        overflow-y: auto;
+        padding-right: 20px; /* Add some padding to prevent content from touching the scrollbar */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Linux Fundamentals and Commands</h1>
-        <p>Linux is a popular open-source operating system used in servers, embedded systems, and personal computers. Understanding Linux fundamentals and commands is essential for navigating the system, performing administrative tasks, and managing files and directories.</p>
-        
+      <h1>Linux Fundamentals and Commands</h1>
+      <div class="scrollable-content">
+        <p>
+          Linux is a popular open-source operating system used in servers,
+          embedded systems, and personal computers. Understanding Linux
+          fundamentals and commands is essential for navigating the system,
+          performing administrative tasks, and managing files and directories.
+        </p>
+
         <h2>Key Linux Fundamentals:</h2>
         <ul>
-            <li><span class="emphasis">Shell:</span> The shell is a command-line interface (CLI) that interprets user commands and executes them. Common shells include Bash, Zsh, and Fish.</li>
-            <li><span class="emphasis">Filesystem Hierarchy:</span> Linux organizes files and directories in a hierarchical structure, with the root directory (/) at the top. Important directories include /bin (binary executables), /etc (configuration files), /home (user home directories), and /var (variable data).</li>
-            <li><span class="emphasis">Permissions:</span> Linux uses permissions to control access to files and directories. Permissions are set for three categories of users: owner, group, and others, with read, write, and execute permissions.</li>
-            <li><span class="emphasis">Processes:</span> Processes are running instances of programs on Linux. The ps command displays information about processes, and the kill command terminates processes.</li>
-            <li><span class="emphasis">Redirection and Pipes:</span> Redirection (<, >) and pipes (|) are used to redirect input and output between commands. For example, the cat command can be used to concatenate files, and the grep command can search for patterns in text.</li>
+          <li>
+            <span class="emphasis">Shell:</span> The shell is a command-line
+            interface (CLI) that interprets user commands and executes them.
+            Common shells include Bash, Zsh, and Fish.
+          </li>
+          <li>
+            <span class="emphasis">Filesystem Hierarchy:</span> Linux organizes
+            files and directories in a hierarchical structure, with the root
+            directory (/) at the top. Important directories include /bin (binary
+            executables), /etc (configuration files), /home (user home
+            directories), and /var (variable data).
+          </li>
+          <li>
+            <span class="emphasis">Permissions:</span> Linux uses permissions to
+            control access to files and directories. Permissions are set for
+            three categories of users: owner, group, and others, with read,
+            write, and execute permissions.
+          </li>
+          <li>
+            <span class="emphasis">Processes:</span> Processes are running
+            instances of programs on Linux. The ps command displays information
+            about processes, and the kill command terminates processes.
+          </li>
+          <li>
+            <span class="emphasis">Redirection and Pipes:</span> Redirection (<,
+            >) and pipes (|) are used to redirect input and output between
+            commands. For example, the cat command can be used to concatenate
+            files, and the grep command can search for patterns in text.
+          </li>
         </ul>
-        
+
         <h2>Commonly Used Linux Commands:</h2>
         <ul>
-            <li><span class="emphasis">ls:</span> List files and directories in the current directory.</li>
-            <li><span class="emphasis">cd:</span> Change the current directory.</li>
-            <li><span class="emphasis">pwd:</span> Print the current working directory.</li>
-            <li><span class="emphasis">mkdir:</span> Create a new directory.</li>
-            <li><span class="emphasis">rm:</span> Remove files or directories.</li>
-            <li><span class="emphasis">cp:</span> Copy files or directories.</li>
-            <li><span class="emphasis">mv:</span> Move or rename files or directories.</li>
-            <li><span class="emphasis">cat:</span> Display the contents of a file.</li>
-            <li><span class="emphasis">grep:</span> Search for patterns in files.</li>
-            <li><span class="emphasis">chmod:</span> Change file permissions.</li>
-            <li><span class="emphasis">chown:</span> Change file ownership.</li>
-            <li><span class="emphasis">ps:</span> Display information about processes.</li>
-            <li><span class="emphasis">kill:</span> Terminate processes.</li>
+          <li>
+            <span class="emphasis">ls:</span> List files and directories in the
+            current directory.
+          </li>
+          <li>
+            <span class="emphasis">cd:</span> Change the current directory.
+          </li>
+          <li>
+            <span class="emphasis">pwd:</span> Print the current working
+            directory.
+          </li>
+          <li><span class="emphasis">mkdir:</span> Create a new directory.</li>
+          <li>
+            <span class="emphasis">rm:</span> Remove files or directories.
+          </li>
+          <li><span class="emphasis">cp:</span> Copy files or directories.</li>
+          <li>
+            <span class="emphasis">mv:</span> Move or rename files or
+            directories.
+          </li>
+          <li>
+            <span class="emphasis">cat:</span> Display the contents of a file.
+          </li>
+          <li>
+            <span class="emphasis">grep:</span> Search for patterns in files.
+          </li>
+          <li><span class="emphasis">chmod:</span> Change file permissions.</li>
+          <li><span class="emphasis">chown:</span> Change file ownership.</li>
+          <li>
+            <span class="emphasis">ps:</span> Display information about
+            processes.
+          </li>
+          <li><span class="emphasis">kill:</span> Terminate processes.</li>
         </ul>
-        
+
         <h2>Conclusion:</h2>
-        <p>Linux offers a powerful and flexible environment for users and administrators to work with. By mastering Linux fundamentals and commands, you can efficiently navigate the system, manage files and directories, and perform various administrative tasks, thereby maximizing productivity and effectiveness in a Linux-based environment.</p>
+        <p>
+          Linux offers a powerful and flexible environment for users and
+          administrators to work with. By mastering Linux fundamentals and
+          commands, you can efficiently navigate the system, manage files and
+          directories, and perform various administrative tasks, thereby
+          maximizing productivity and effectiveness in a Linux-based
+          environment.
+        </p>
+      </div>
     </div>
-</body>
+  </body>
 </html>
+{% endblock %}

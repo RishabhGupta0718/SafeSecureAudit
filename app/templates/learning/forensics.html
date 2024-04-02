@@ -1,92 +1,162 @@
+{% extends 'learning_base.html' %} {% block body %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Forensics</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #333;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        ul {
-            margin-bottom: 20px;
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-            color: #333;
-        }
-        li:before {
-            content: '\2022';
-            color: #333;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            position: absolute;
-            left: 0;
-        }
-        .emphasis {
-            font-weight: bold;
-            color: #000;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      .container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #333;
+        margin-top: 20px;
+      }
+      p {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      ul {
+        margin-bottom: 20px;
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        color: #333;
+      }
+      li:before {
+        content: "\2022";
+        color: #333;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        position: absolute;
+        left: 0;
+      }
+      .emphasis {
+        font-weight: bold;
+        color: #000;
+      }
+      .scrollable-content {
+        height: 450px; /* Adjust the height as needed */
+        overflow-y: auto;
+        padding-right: 20px; /* Add some padding to prevent content from touching the scrollbar */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Digital Forensics</h1>
-        <p>Digital forensics is the process of collecting, preserving, analyzing, and presenting digital evidence to support investigations and legal proceedings. It involves the application of forensic techniques to recover, examine, and interpret data stored on electronic devices and systems.</p>
-        
+      <h1>Digital Forensics</h1>
+      <div class="scrollable-content">
+        <p>
+          Digital forensics is the process of collecting, preserving, analyzing,
+          and presenting digital evidence to support investigations and legal
+          proceedings. It involves the application of forensic techniques to
+          recover, examine, and interpret data stored on electronic devices and
+          systems.
+        </p>
+
         <h2>Key Aspects of Digital Forensics:</h2>
         <ul>
-            <li><span class="emphasis">Evidence Collection:</span> Digital forensics begins with the identification and collection of digital evidence from various sources, including computers, mobile devices, storage media, and network logs.</li>
-            <li><span class="emphasis">Data Preservation:</span> Once collected, digital evidence must be preserved in a forensically sound manner to maintain its integrity and admissibility in court.</li>
-            <li><span class="emphasis">Analysis:</span> Forensic analysts use specialized tools and techniques to analyze digital evidence, including file carving, metadata analysis, and keyword searching, to uncover relevant information.</li>
-            <li><span class="emphasis">Reconstruction:</span> Digital forensics experts reconstruct events and activities based on the evidence collected, providing insights into the timeline and sequence of events.</li>
-            <li><span class="emphasis">Reporting:</span> Findings from digital forensic examinations are documented in detailed reports, which may be used to support legal proceedings, internal investigations, or incident response efforts.</li>
+          <li>
+            <span class="emphasis">Evidence Collection:</span> Digital forensics
+            begins with the identification and collection of digital evidence
+            from various sources, including computers, mobile devices, storage
+            media, and network logs.
+          </li>
+          <li>
+            <span class="emphasis">Data Preservation:</span> Once collected,
+            digital evidence must be preserved in a forensically sound manner to
+            maintain its integrity and admissibility in court.
+          </li>
+          <li>
+            <span class="emphasis">Analysis:</span> Forensic analysts use
+            specialized tools and techniques to analyze digital evidence,
+            including file carving, metadata analysis, and keyword searching, to
+            uncover relevant information.
+          </li>
+          <li>
+            <span class="emphasis">Reconstruction:</span> Digital forensics
+            experts reconstruct events and activities based on the evidence
+            collected, providing insights into the timeline and sequence of
+            events.
+          </li>
+          <li>
+            <span class="emphasis">Reporting:</span> Findings from digital
+            forensic examinations are documented in detailed reports, which may
+            be used to support legal proceedings, internal investigations, or
+            incident response efforts.
+          </li>
         </ul>
-        
+
         <h2>Applications of Digital Forensics:</h2>
         <ul>
-            <li><span class="emphasis">Criminal Investigations:</span> Digital forensics is used to investigate various types of crimes, including cybercrimes, fraud, intellectual property theft, and child exploitation.</li>
-            <li><span class="emphasis">Incident Response:</span> Digital forensics helps organizations respond to security incidents by identifying the root cause, containing the impact, and recovering from the breach.</li>
-            <li><span class="emphasis">Litigation Support:</span> Digital evidence collected through forensic analysis is often used as evidence in civil and criminal court proceedings to support legal arguments and establish facts.</li>
-            <li><span class="emphasis">Compliance:</span> Digital forensics assists organizations in meeting regulatory requirements and industry standards by investigating security incidents and data breaches.</li>
-            <li><span class="emphasis">Cybersecurity:</span> Digital forensics plays a vital role in cybersecurity by identifying security vulnerabilities, analyzing attack vectors, and improving incident response capabilities.</li>
+          <li>
+            <span class="emphasis">Criminal Investigations:</span> Digital
+            forensics is used to investigate various types of crimes, including
+            cybercrimes, fraud, intellectual property theft, and child
+            exploitation.
+          </li>
+          <li>
+            <span class="emphasis">Incident Response:</span> Digital forensics
+            helps organizations respond to security incidents by identifying the
+            root cause, containing the impact, and recovering from the breach.
+          </li>
+          <li>
+            <span class="emphasis">Litigation Support:</span> Digital evidence
+            collected through forensic analysis is often used as evidence in
+            civil and criminal court proceedings to support legal arguments and
+            establish facts.
+          </li>
+          <li>
+            <span class="emphasis">Compliance:</span> Digital forensics assists
+            organizations in meeting regulatory requirements and industry
+            standards by investigating security incidents and data breaches.
+          </li>
+          <li>
+            <span class="emphasis">Cybersecurity:</span> Digital forensics plays
+            a vital role in cybersecurity by identifying security
+            vulnerabilities, analyzing attack vectors, and improving incident
+            response capabilities.
+          </li>
         </ul>
-        
+
         <h2>Conclusion:</h2>
-        <p>Digital forensics is a critical component of modern investigative and security practices, providing valuable insights into digital evidence and supporting efforts to combat cybercrime and ensure accountability. By leveraging forensic techniques and technologies, organizations can effectively respond to security incidents, protect sensitive data, and uphold the rule of law.</p>
+        <p>
+          Digital forensics is a critical component of modern investigative and
+          security practices, providing valuable insights into digital evidence
+          and supporting efforts to combat cybercrime and ensure accountability.
+          By leveraging forensic techniques and technologies, organizations can
+          effectively respond to security incidents, protect sensitive data, and
+          uphold the rule of law.
+        </p>
+      </div>
     </div>
-</body>
+  </body>
 </html>
+
+{% endblock %}

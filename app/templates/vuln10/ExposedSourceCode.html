@@ -1,116 +1,176 @@
-{% extends 'vuln10.html' %}
-{% block body %}
+{% extends 'vuln10.html' %} {% block body %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exposed Source Code</title>
     <style>
-body, h1, h2, p, ol, li, pre, code {
-    margin: 0;
-    padding: 0;
-}
+      body,
+      h1,
+      h2,
+      p,
+      ol,
+      li,
+      pre,
+      code {
+        margin: 0;
+        padding: 0;
+      }
 
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-}
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
 
-article {
-    max-width: 800px;
-    margin: 0 auto;
-}
+      article {
+        max-width: 800px;
+        margin: 0 auto;
+      }
 
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
+      h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
 
-h2 {
-    font-size: 1.5em;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
+      h2 {
+        font-size: 1.5em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
 
-section {
-    margin-bottom: 20px;
-}
+      section {
+        margin-bottom: 20px;
+      }
 
-pre {
-    background-color: #f8f8f8;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
+      pre {
+        background-color: #f8f8f8;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
 
-code {
-    font-family: Consolas, monospace;
-}
+      code {
+        font-family: Consolas, monospace;
+      }
 
-/* Style Markdown code blocks */
-pre code {
-    display: block;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow-x: auto;
-}
-img {
-            max-width: 100%;
-            height: auto;
-        }
+      /* Style Markdown code blocks */
+      pre code {
+        display: block;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
 
+      .container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      .scrollable-content {
+        height: 450px; /* Adjust the height as needed */
+        overflow-y: auto;
+        padding-right: 20px;
+      }
     </style>
-</head>
-<body>
-    <h1>Exposed Source Code</h1>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Exposed Source Code</h1>
+      <div class="scrollable-content">
+        <h2>Introduction</h2>
+        <p>
+          Source code intended to be kept server-side can sometimes end up being
+          disclosed to users. Such code may contain sensitive information such
+          as database passwords and secret keys, which may help malicious users
+          formulate attacks against the application.
+        </p>
 
-    <h2>Introduction</h2>
-    <p>Source code intended to be kept server-side can sometimes end up being disclosed to users. Such code may contain sensitive information such as database passwords and secret keys, which may help malicious users formulate attacks against the application.</p>
-
-    <h2>How to exploit</h2>
-    <ol>
-        <li>
+        <h2>How to exploit</h2>
+        <ol>
+          <li>
             <p>Exposed Git folder</p>
             <pre><code>https://site.com/.git</code></pre>
-            <p>Tools to dump .git: <a href="https://github.com/arthaud/git-dumper">git-dumper</a></p>
-            <img src="https://1.bp.blogspot.com/-wTZOuULaqNw/XliI9jS0w3I/AAAAAAAAATA/VZxs7VL5PCY8FdnoKaEjS6AWpcjoJz4MgCLcBGAsYHQ/s1600/1.png" alt="GIT folder">
-        </li>
-        <li>
+            <p>
+              Tools to dump .git:
+              <a href="https://github.com/arthaud/git-dumper">git-dumper</a>
+            </p>
+            <img
+              src="https://1.bp.blogspot.com/-wTZOuULaqNw/XliI9jS0w3I/AAAAAAAAATA/VZxs7VL5PCY8FdnoKaEjS6AWpcjoJz4MgCLcBGAsYHQ/s1600/1.png"
+              alt="GIT folder"
+            />
+          </li>
+          <li>
             <p>Exposed Subversion folder</p>
             <pre><code>https://site.com/.svn</code></pre>
-            <p>Tools to dump .svn: <a href="https://github.com/anantshri/svn-extractor">svn-extractor</a></p>
-            <img src="https://1.bp.blogspot.com/-5bC_EhFShgk/XliJqiw8pJI/AAAAAAAAATI/2HhrX0Ea3MwQ60Ax2tzNprNvulggPrZAACLcBGAsYHQ/s1600/1.png" alt="SVN folder">
-        </li>
-        <li>
+            <p>
+              Tools to dump .svn:
+              <a href="https://github.com/anantshri/svn-extractor"
+                >svn-extractor</a
+              >
+            </p>
+            <img
+              src="https://1.bp.blogspot.com/-5bC_EhFShgk/XliJqiw8pJI/AAAAAAAAATI/2HhrX0Ea3MwQ60Ax2tzNprNvulggPrZAACLcBGAsYHQ/s1600/1.png"
+              alt="SVN folder"
+            />
+          </li>
+          <li>
             <p>Exposed Mercurial folder</p>
             <pre><code>https://site.com/.hg</code></pre>
-            <p>Tools to dump .hg: <a href="https://github.com/arthaud/hg-dumper">hg-dumper</a></p>
-            <img src="https://1.bp.blogspot.com/-4FaqUeTlv4k/XliKHBOpgmI/AAAAAAAAATQ/sLdwhvSF-Jgn0WF5P-PouLp6uTeHUAOWACLcBGAsYHQ/s1600/1.png" alt="HG folder">
-        </li>
-        <li>
+            <p>
+              Tools to dump .hg:
+              <a href="https://github.com/arthaud/hg-dumper">hg-dumper</a>
+            </p>
+            <img
+              src="https://1.bp.blogspot.com/-4FaqUeTlv4k/XliKHBOpgmI/AAAAAAAAATQ/sLdwhvSF-Jgn0WF5P-PouLp6uTeHUAOWACLcBGAsYHQ/s1600/1.png"
+              alt="HG folder"
+            />
+          </li>
+          <li>
             <p>Exposed Bazaar folder</p>
             <pre><code>http://target.com/.bzr</code></pre>
-            <p>Tools to dump .bzr: <a href="https://github.com/shpik-kr/bzr_dumper">bzr_dumper</a></p>
-            <img src="https://1.bp.blogspot.com/-67WO_kL_iB8/XliKl1jggAI/AAAAAAAAATc/mWBw7igq05EdKR3JZmbXYN4LqjpBOrESgCLcBGAsYHQ/s1600/1.png" alt="BZR folder">
-        </li>
-        <li>
+            <p>
+              Tools to dump .bzr:
+              <a href="https://github.com/shpik-kr/bzr_dumper">bzr_dumper</a>
+            </p>
+            <img
+              src="https://1.bp.blogspot.com/-67WO_kL_iB8/XliKl1jggAI/AAAAAAAAATc/mWBw7igq05EdKR3JZmbXYN4LqjpBOrESgCLcBGAsYHQ/s1600/1.png"
+              alt="BZR folder"
+            />
+          </li>
+          <li>
             <p>Exposed Darcs folder</p>
             <pre><code>http://target.com/_darcs</code></pre>
             <p>Tools to dump _darcs (Not found)</p>
-        </li>
-        <li>
+          </li>
+          <li>
             <p>Exposed Bitkeeper folder</p>
             <pre><code>http://target.com/Bitkeeper</code></pre>
             <p>Tools to dump BitKeeper (Not found)</p>
-        </li>
-    </ol>
+          </li>
+        </ol>
 
-    <h2>Reference</h2>
-    <ul>
-        <li><a href="https://www.nakanosec.com/2020/02/exposed-source-code-pada-website.html">NakanoSec (my own post)</a></li>
-    </ul>
-</body>
-{% endblock %}
+        <h2>Reference</h2>
+        <ul>
+          <li>
+            <a
+              href="https://www.nakanosec.com/2020/02/exposed-source-code-pada-website.html"
+              >NakanoSec (my own post)</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  {% endblock %}
+</html>

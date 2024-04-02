@@ -1,104 +1,220 @@
+{% extends 'learning_base.html' %} {% block body %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Security</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #333;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        ul {
-            margin-bottom: 20px;
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-            color: #333;
-        }
-        li:before {
-            content: '\2022';
-            color: #333;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            position: absolute;
-            left: 0;
-        }
-        .emphasis {
-            font-weight: bold;
-            color: #000;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      .container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #333;
+        margin-top: 20px;
+      }
+      p {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      ul {
+        margin-bottom: 20px;
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        color: #333;
+      }
+      li:before {
+        content: "\2022";
+        color: #333;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        position: absolute;
+        left: 0;
+      }
+      .emphasis {
+        font-weight: bold;
+        color: #000;
+      }
+      .scrollable-content {
+        height: 450px; /* Adjust the height as needed */
+        overflow-y: auto;
+        padding-right: 20px; /* Add some padding to prevent content from touching the scrollbar */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Web Security</h1>
-        <p>Web security refers to the measures and practices implemented to protect websites, web applications, and web services from security threats, vulnerabilities, and attacks. With the increasing reliance on the internet for various activities, ensuring web security is essential to safeguard sensitive data, maintain user trust, and prevent unauthorized access or manipulation of web resources.</p>
-        
+      <h1>Web Security</h1>
+      <div class="scrollable-content">
+        <p>
+          Web security refers to the measures and practices implemented to
+          protect websites, web applications, and web services from security
+          threats, vulnerabilities, and attacks. With the increasing reliance on
+          the internet for various activities, ensuring web security is
+          essential to safeguard sensitive data, maintain user trust, and
+          prevent unauthorized access or manipulation of web resources.
+        </p>
+
         <h2>Key Aspects of Web Security:</h2>
         <ul>
-            <li><span class="emphasis">Secure Communication:</span> Implement secure communication protocols, such as HTTPS (HTTP over SSL/TLS), to encrypt data transmitted between web clients and servers, protecting against eavesdropping, interception, and tampering.</li>
-            <li><span class="emphasis">Authentication and Authorization:</span> Authenticate and authorize users accessing web resources using strong authentication mechanisms, such as passwords, multi-factor authentication (MFA), and OAuth, and enforce access controls based on user roles and permissions.</li>
-            <li><span class="emphasis">Input Validation:</span> Validate and sanitize user inputs to prevent injection attacks, such as SQL injection and cross-site scripting (XSS), by filtering and escaping special characters and enforcing input validation rules.</li>
-            <li><span class="emphasis">Session Management:</span> Securely manage user sessions and cookies by using session tokens, setting secure flags and attributes, and implementing session expiration and invalidation mechanisms to prevent session hijacking and fixation attacks.</li>
-            <li><span class="emphasis">Cross-Site Request Forgery (CSRF) Protection:</span> Implement CSRF tokens and anti-CSRF measures to prevent attackers from executing unauthorized actions on behalf of authenticated users by tricking them into submitting malicious requests.</li>
-            <li><span class="emphasis">Security Headers:</span> Configure security headers, such as Content Security Policy (CSP), HTTP Strict Transport Security (HSTS), and X-Frame-Options, to mitigate common web security vulnerabilities and enforce browser security policies.</li>
+          <li>
+            <span class="emphasis">Secure Communication:</span> Implement secure
+            communication protocols, such as HTTPS (HTTP over SSL/TLS), to
+            encrypt data transmitted between web clients and servers, protecting
+            against eavesdropping, interception, and tampering.
+          </li>
+          <li>
+            <span class="emphasis">Authentication and Authorization:</span>
+            Authenticate and authorize users accessing web resources using
+            strong authentication mechanisms, such as passwords, multi-factor
+            authentication (MFA), and OAuth, and enforce access controls based
+            on user roles and permissions.
+          </li>
+          <li>
+            <span class="emphasis">Input Validation:</span> Validate and
+            sanitize user inputs to prevent injection attacks, such as SQL
+            injection and cross-site scripting (XSS), by filtering and escaping
+            special characters and enforcing input validation rules.
+          </li>
+          <li>
+            <span class="emphasis">Session Management:</span> Securely manage
+            user sessions and cookies by using session tokens, setting secure
+            flags and attributes, and implementing session expiration and
+            invalidation mechanisms to prevent session hijacking and fixation
+            attacks.
+          </li>
+          <li>
+            <span class="emphasis"
+              >Cross-Site Request Forgery (CSRF) Protection:</span
+            >
+            Implement CSRF tokens and anti-CSRF measures to prevent attackers
+            from executing unauthorized actions on behalf of authenticated users
+            by tricking them into submitting malicious requests.
+          </li>
+          <li>
+            <span class="emphasis">Security Headers:</span> Configure security
+            headers, such as Content Security Policy (CSP), HTTP Strict
+            Transport Security (HSTS), and X-Frame-Options, to mitigate common
+            web security vulnerabilities and enforce browser security policies.
+          </li>
         </ul>
-        
+
         <h2>Common Web Security Threats:</h2>
         <ul>
-            <li><span class="emphasis">SQL Injection:</span> SQL injection attacks exploit vulnerabilities in web applications to execute malicious SQL queries against the underlying database, allowing attackers to extract, modify, or delete sensitive data.</li>
-            <li><span class="emphasis">Cross-Site Scripting (XSS):</span> XSS attacks inject malicious scripts into web pages viewed by other users, enabling attackers to steal session cookies, deface websites, or redirect users to phishing sites.</li>
-            <li><span class="emphasis">Cross-Site Request Forgery (CSRF):</span> CSRF attacks trick authenticated users into executing unintended actions on web applications by forging malicious requests, leading to account takeover, data manipulation, or unauthorized transactions.</li>
-            <li><span class="emphasis">Sensitive Data Exposure:</span> Sensitive data exposure occurs when web applications fail to adequately protect confidential information, such as passwords, credit card numbers, or personal details, exposing them to unauthorized access or disclosure.</li>
-            <li><span class="emphasis">Unvalidated Redirects and Forwards:</span> Unvalidated redirects and forwards in web applications can be exploited by attackers to redirect users to malicious websites or phishing pages, leading to further exploitation or social engineering attacks.</li>
-            <li><span class="emphasis">Security Misconfigurations:</span> Security misconfigurations, such as default settings, outdated software, and improper access controls, can expose web applications to security risks, allowing attackers to exploit known vulnerabilities and gain unauthorized access.</li>
+          <li>
+            <span class="emphasis">SQL Injection:</span> SQL injection attacks
+            exploit vulnerabilities in web applications to execute malicious SQL
+            queries against the underlying database, allowing attackers to
+            extract, modify, or delete sensitive data.
+          </li>
+          <li>
+            <span class="emphasis">Cross-Site Scripting (XSS):</span> XSS
+            attacks inject malicious scripts into web pages viewed by other
+            users, enabling attackers to steal session cookies, deface websites,
+            or redirect users to phishing sites.
+          </li>
+          <li>
+            <span class="emphasis">Cross-Site Request Forgery (CSRF):</span>
+            CSRF attacks trick authenticated users into executing unintended
+            actions on web applications by forging malicious requests, leading
+            to account takeover, data manipulation, or unauthorized
+            transactions.
+          </li>
+          <li>
+            <span class="emphasis">Sensitive Data Exposure:</span> Sensitive
+            data exposure occurs when web applications fail to adequately
+            protect confidential information, such as passwords, credit card
+            numbers, or personal details, exposing them to unauthorized access
+            or disclosure.
+          </li>
+          <li>
+            <span class="emphasis">Unvalidated Redirects and Forwards:</span>
+            Unvalidated redirects and forwards in web applications can be
+            exploited by attackers to redirect users to malicious websites or
+            phishing pages, leading to further exploitation or social
+            engineering attacks.
+          </li>
+          <li>
+            <span class="emphasis">Security Misconfigurations:</span> Security
+            misconfigurations, such as default settings, outdated software, and
+            improper access controls, can expose web applications to security
+            risks, allowing attackers to exploit known vulnerabilities and gain
+            unauthorized access.
+          </li>
         </ul>
-        
+
         <h2>Best Practices for Web Security:</h2>
         <ul>
-            <li><span class="emphasis">Use HTTPS:</span> Encrypt web traffic using HTTPS to protect data in transit and prevent man-in-the-middle attacks.</li>
-            <li><span class="emphasis">Input Validation:</span> Validate and sanitize user inputs to prevent injection attacks and data manipulation.</li>
-            <li><span class="emphasis">Authentication:</span> Implement strong authentication mechanisms and enforce password policies to protect user accounts.</li>
-            <li><span class="emphasis">Access Controls:</span> Restrict access to sensitive resources based on user roles and permissions to minimize the attack surface.</li>
-            <li><span class="emphasis">Security Headers:</span> Configure security headers to mitigate common web security vulnerabilities and enforce browser security policies.</li>
-            <li><span class="emphasis">Regular Security Audits:</span> Conduct regular security audits and vulnerability assessments to identify and remediate security weaknesses.</li>
+          <li>
+            <span class="emphasis">Use HTTPS:</span> Encrypt web traffic using
+            HTTPS to protect data in transit and prevent man-in-the-middle
+            attacks.
+          </li>
+          <li>
+            <span class="emphasis">Input Validation:</span> Validate and
+            sanitize user inputs to prevent injection attacks and data
+            manipulation.
+          </li>
+          <li>
+            <span class="emphasis">Authentication:</span> Implement strong
+            authentication mechanisms and enforce password policies to protect
+            user accounts.
+          </li>
+          <li>
+            <span class="emphasis">Access Controls:</span> Restrict access to
+            sensitive resources based on user roles and permissions to minimize
+            the attack surface.
+          </li>
+          <li>
+            <span class="emphasis">Security Headers:</span> Configure security
+            headers to mitigate common web security vulnerabilities and enforce
+            browser security policies.
+          </li>
+          <li>
+            <span class="emphasis">Regular Security Audits:</span> Conduct
+            regular security audits and vulnerability assessments to identify
+            and remediate security weaknesses.
+          </li>
         </ul>
-        
+
         <h2>Conclusion:</h2>
-        <p>Web security is essential for protecting websites, web applications, and web services from a wide range of security threats and vulnerabilities. By implementing robust security measures, adhering to best practices, and staying vigilant against emerging threats, organizations can ensure the confidentiality, integrity, and availability of their web resources and maintain user trust in the digital ecosystem.</p>
+        <p>
+          Web security is essential for protecting websites, web applications,
+          and web services from a wide range of security threats and
+          vulnerabilities. By implementing robust security measures, adhering to
+          best practices, and staying vigilant against emerging threats,
+          organizations can ensure the confidentiality, integrity, and
+          availability of their web resources and maintain user trust in the
+          digital ecosystem.
+        </p>
+      </div>
     </div>
-</body>
+  </body>
 </html>
+{% endblock %}

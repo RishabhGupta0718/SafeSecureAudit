@@ -1,122 +1,155 @@
-{% extends 'vuln10.html' %}
-{% block body %}
+{% extends 'vuln10.html' %} {% block body %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Insecure Direct Object References</title>
     <style>
-body, h1, h2, p, ol, li, pre, code {
-    margin: 0;
-    padding: 0;
-}
+      body,
+      h1,
+      h2,
+      p,
+      ol,
+      li,
+      pre,
+      code {
+        margin: 0;
+        padding: 0;
+      }
 
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-}
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
 
-article {
-    max-width: 800px;
-    margin: 0 auto;
-}
+      article {
+        max-width: 800px;
+        margin: 0 auto;
+      }
 
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
+      h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
 
-h2 {
-    font-size: 1.5em;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
+      h2 {
+        font-size: 1.5em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
 
-section {
-    margin-bottom: 20px;
-}
+      section {
+        margin-bottom: 20px;
+      }
 
-pre {
-    background-color: #f8f8f8;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
+      pre {
+        background-color: #f8f8f8;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
 
-code {
-    font-family: Consolas, monospace;
-}
+      code {
+        font-family: Consolas, monospace;
+      }
 
-/* Style Markdown code blocks */
-pre code {
-    display: block;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow-x: auto;
-}
-
+      /* Style Markdown code blocks */
+      pre code {
+        display: block;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      .scrollable-content {
+        height: 450px; /* Adjust the height as needed */
+        overflow-y: auto;
+        padding-right: 20px;
+      }
     </style>
-</head>
-<body>
-    <h1>Insecure Direct Object Reference (IDOR)</h1>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Insecure Direct Object Reference (IDOR)</h1>
+      <div class="scrollable-content">
+        <h2>Introduction</h2>
+        <p>
+          IDOR stands for Insecure Direct Object Reference is a security
+          vulnerability in which a user is able to access and make changes to
+          data of any other user present in the system.
+        </p>
 
-    <h2>Introduction</h2>
-    <p>IDOR stands for Insecure Direct Object Reference is a security vulnerability in which a user is able to access and make changes to data of any other user present in the system.</p>
+        <h2>Where to find</h2>
+        <ul>
+          <li>Usually it can be found in APIs.</li>
+          <li>
+            Check the HTTP request that contain unique ID, for example
+            <code>user_id</code> or <code>id</code>
+          </li>
+        </ul>
 
-    <h2>Where to find</h2>
-    <ul>
-        <li>Usually it can be found in APIs.</li>
-        <li>Check the HTTP request that contain unique ID, for example <code>user_id</code> or <code>id</code></li>
-    </ul>
-
-    <h2>How to exploit</h2>
-    <ol>
-        <li>
+        <h2>How to exploit</h2>
+        <ol>
+          <li>
             <p>Add parameters onto the endpoints for example, if there was</p>
             <pre><code>GET /api/v1/getuser HTTP/1.1
-Host: example.com
-...</code></pre>
-   <pre><code>GET /api/v1/getuser?id=1234 HTTP/1.1
-Host: example.com
-...</code></pre>
-</li>
-<li>
-<p>HTTP Parameter pollution</p>
-<pre><code>POST /api/get_profile HTTP/1.1
-Host: example.com
-...
-user_id=hacker_id&user_id=victim_id
-</code></pre>
-</li>
-<li>
-<p>Add .json to the endpoint</p>
-<pre><code>GET /v2/GetData/1234 HTTP/1.1
-Host: example.com
-...</code></pre>
-<pre><code>GET /v2/GetData/1234.json HTTP/1.1
-Host: example.com
-...</code></pre>
-</li>
-<li>Test on outdated API Versions</li>
-<li>Wrap the ID with an array.</li>
-<li>Wrap the ID with a JSON object</li>
-<li>JSON Parameter Pollution</li>
-<li>Try decode the ID, if the ID encoded using md5,base64,etc</li>
-<li>If the website using GraphQL, try to find IDOR using GraphQL</li>
-<li>MFLAC (Missing Function Level Access Control)</li>
-<li>Try to swap uuid with number</li>
-<li>Change HTTP Method</li>
-<li>Path traversal</li>
-<li>Change request <code>Content-Type</code></li>
-<li>Send wildcard instead of ID</li>
-<li>Try google dorking to find new endpoint</li>
-</ol>
-<h2>References</h2>
-<ul>
-    <li><a href="https://twitter.com/swaysThinking">@swaysThinking</a> and other medium writeup</li>
-</ul>
-</body>
-{% endblock %}
+                    Host: example.com
+                    ...</code></pre>
+            <pre><code>GET /api/v1/getuser?id=1234 HTTP/1.1
+                        Host: example.com
+                        ...</code></pre>
+          </li>
+          <li>
+            <p>HTTP Parameter pollution</p>
+            <pre><code>POST /api/get_profile HTTP/1.1
+                            Host: example.com
+                            ...
+                            user_id=hacker_id&user_id=victim_id
+                        </code></pre>
+          </li>
+          <li>
+            <p>Add .json to the endpoint</p>
+            <pre><code>GET /v2/GetData/1234 HTTP/1.1
+        Host: example.com
+        ...</code></pre>
+            <pre><code>GET /v2/GetData/1234.json HTTP/1.1
+            Host: example.com
+            ...</code></pre>
+          </li>
+          <li>Test on outdated API Versions</li>
+          <li>Wrap the ID with an array.</li>
+          <li>Wrap the ID with a JSON object</li>
+          <li>JSON Parameter Pollution</li>
+          <li>Try decode the ID, if the ID encoded using md5,base64,etc</li>
+          <li>If the website using GraphQL, try to find IDOR using GraphQL</li>
+          <li>MFLAC (Missing Function Level Access Control)</li>
+          <li>Try to swap uuid with number</li>
+          <li>Change HTTP Method</li>
+          <li>Path traversal</li>
+          <li>Change request <code>Content-Type</code></li>
+          <li>Send wildcard instead of ID</li>
+          <li>Try google dorking to find new endpoint</li>
+        </ol>
+        <h2>References</h2>
+        <ul>
+          <li>
+            <a href="https://twitter.com/swaysThinking">@swaysThinking</a> and
+            other medium writeup
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  {% endblock %}
+</html>

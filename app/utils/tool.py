@@ -1,6 +1,6 @@
 import dns.resolver
 import requests
-
+import re
 
 def dns_record_lookup(domain_name, record_type):
     try:
@@ -33,7 +33,6 @@ def dnslookup(domain_name):
                     else:
                         output[record_type] = [value]
                 else:
-                    # Handle lines that do not match the expected format
                     output['Unknown'] = [line.strip()]
         return output
     else:
@@ -69,12 +68,20 @@ def page_extract(domain_name):
         return results
     else:
         return None
-import re
 
-def extract_emails(text):
-    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-    emails = re.findall(pattern, text)
-    return emails   
+def extract_emails(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status() 
+        if response.status_code == 200:
+            emails = re.findall(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', response.text)
+            return emails
+        else:
+            print("Failed to fetch the webpage. Status code:", response.status_code)
+            return []
+    except requests.RequestException as e:
+        print("Error occurred during HTTP request:", e)
+        return []
 
 def fetch_all_in_one_data(domain_name):
     url = f"https://netlas-all-in-one-host.p.rapidapi.com/host/{domain_name}/"

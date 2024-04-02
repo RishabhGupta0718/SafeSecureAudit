@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block body %}
+<div class="container">
+  <h1>Data Breach Checker</h1>
+  <!-- Scan Form -->
+  <form id="scanForm" action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="websiteUrl">Enter Domain Name:</label>
+      <input
+        type="text"
+        id="websiteUrl"
+        name="websiteUrl"
+        placeholder="example.com"
+        required
+      />
+    </div>
+    <input type="submit" value="Scan" />
+  </form>
+
+  <!-- Scan Results -->
+  <div class="result" id="scanResult">
+    <h2 class="result-title">Scan Results</h2>
+    <p><strong>Domain Name:</strong> {{ domain_name }}</p>
+    <p><strong>Massage</strong> {{ message }}</p>
+    <p>{{ summary|length }} breaches found:</p>
+    <ul>
+      {% for breach in summary %}
+      <li>
+        <strong>Breach Name:</strong> {{ breach.breach_name }}<br />
+        <strong>Breach Summary:</strong> {{ breach.breach_summary }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

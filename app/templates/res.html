@@ -8,7 +8,7 @@
     <a href="{% url 'index' %}?tool=ipgeotool" class="sidebar-link">GEO LOCATION</a>
     <a href="{% url 'index' %}?tool=extract_emails" class="sidebar-link">Email Extract</a>
     <a href="{% url 'index' %}?tool=phoneinfo" class="sidebar-link">Phone INFO</a>
-    <a href="{% url 'index' %}?tool=portscanner" class="sidebar-link">PORT SCAN TOOL</a>
+    <a href="{% url 'index' %}?tool=brachdata" class="sidebar-link">DATA BREACH CHECKER</a>
     <div class="dropdown">
       <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Learning
@@ -27,3 +27,6 @@
   </div>
   <!-- Content -->
   <div class="content">{% block body %} {% endblock %}</div>
+
+
+  <a class="dropdown-item" href="{% url 'learning' %}?learn=web_security"></a>

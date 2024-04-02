@@ -104,6 +104,8 @@ def index(request):
         
         elif tool == "extract_emails":
             return render(request, 'tools/extract_emails.html')
+        elif tool == "brachdata":
+            return render(request, 'tools/brachdata.html')
         else:
             return render(request, 'index.html', {'error_message': 'Please select provided tool on sidebar.'})
 
@@ -111,22 +113,71 @@ def index(request):
 def learning(request):
     learn = request.GET.get('learn', '')
     if request.method == 'GET':
-        if learn == "Arbitrary_File_Upload":
-            return render(request,template_name="learning/Arbitrary_File_Upload.html")
-        elif learn == "CRLF_Injection":
-            return render(request,template_name="learning/CRLF_Injection.html")
-        elif learn == "csrf":
-            return render(request,template_name="learning/csrf.html")
-        elif learn == "xss":
-            return render(request,template_name="learning/xss.html")
-        elif learn == "dos":
-            return render(request,template_name="learning/dos.html")
-        elif learn == "ExposedSourceCode":
-            return render(request,template_name="learning/ExposedSourceCode.html")
-        elif learn == "HostHeaderInjection":
-            return render(request,template_name="learning/Host Header Injection.html")
-        elif learn == "InsecureDirectObjectReferences":
-            return render(request,template_name="learning/Insecure Direct Object References.html")
+        if learn == "cloud_security":
+            return render(request,template_name="learning/cloud_security.html")
+        elif learn == "cryptography":
+            return render(request,template_name="learning/cryptography.html")
+        elif learn == "ethical_hacking":
+            return render(request,template_name="learning/etḥical_hacking.html")
+        elif learn == "forensics":
+            return render(request,template_name="learning/forensics.html")
+        elif learn == "incident":
+            return render(request,template_name="learning/incident.html")
+        elif learn == "iot_security":
+            return render(request,template_name="learning/iot_security.html")
+        elif learn == "linux":
+            return render(request,template_name="learning/linux.html")
+        elif learn == "ml_ai_security":
+            return render(request,template_name="learning/ml_ai_security.html")
+        elif learn == "mobile_security":
+            return render(request,template_name="learning/mobile_security.html")
+        elif learn == "networking":
+            return render(request,template_name="learning/networking.html")
+        elif learn == "os_security":
+            return render(request,template_name="learning/os_security.html")
+        elif learn == "security":
+            return render(request,template_name="learning/security.html")
+        elif learn == "sec_comp_standards":
+            return render(request,template_name="learning/sec_comp_standards.html")
+        elif learn == "web_security":
+            return render(request,template_name="learning/web_security.html")
         else:
-            return render(request,template_name="learning/learning.html")
+            return render(request,template_name="learning.html")
         
+def Allaboutbugbounty(request):
+    vuln10 = request.GET.get('vuln10', '')
+    if request.method == 'GET':
+        if vuln10 == "Arbitrary_File_Upload":
+            return render(request,template_name="vuln10/Arbitrary_File_Upload.html")
+        elif vuln10 == "CRLF_Injection":
+            return render(request,template_name="vuln10/CRLF_Injection.html")
+        elif vuln10 == "csrf":
+            return render(request,template_name="vuln10/csrf.html")
+        elif vuln10 == "xss":
+            return render(request,template_name="vuln10/xss.html")
+        elif vuln10 == "dos":
+            return render(request,template_name="vuln10/dos.html")
+        elif vuln10 == "ExposedSourceCode":
+            return render(request,template_name="vuln10/ExposedSourceCode.html")
+        elif vuln10 == "HostHeaderInjection":
+            return render(request,template_name="vuln10/Host Header Injection.html")
+        elif vuln10 == "InsecureDirectObjectReferences":
+            return render(request,template_name="vuln10/Insecure Direct Object References.html")
+        elif vuln10 == "Open_Redirect":
+            return render(request,template_name="vuln10/Open Redirect.html")
+        elif vuln10 == "ServerSideIncludeInjection":
+            return render(request,template_name="vuln10/Server Side Include Injection.html")
+        elif vuln10 == "SQLInjection":
+            return render(request,template_name="vuln10/SQL Injection.html")
+        elif vuln10 == "WebCachePoisoning":
+            return render(request,template_name="vuln10/Web Cache Poisoning.html")
+        elif vuln10 == "OAuthMisconfiguration":
+            return render(request,template_name="vuln10/OAuth Misconfiguration.html")
+        elif vuln10 == "LocalFileInclusion.":
+            return render(request,template_name="vuln10/Local File Inclusion.html")
+        else:
+            return render(request,template_name="vuln10.html")
+
+    
+def termsandcondition(request):
+    return render(request,template_name="termsandcondition.html")

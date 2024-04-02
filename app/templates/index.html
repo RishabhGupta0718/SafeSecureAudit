@@ -1,5 +1,63 @@
 {% extends 'base.html' %} 
 {% block body %}
 <div class="container">
-  <h1>Website Scanner</h1>
+    <style>
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .dashboard-element {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .dashboard-element h3 {
+            color: #333;
+        }
+
+        .dashboard-element p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Cybersecurity Platform</h1>
+    </header>
+    <section class="main-content">
+        <h2>Dashboard</h2>
+        <div class="dashboard">
+            <div class="dashboard-element">
+                <h3>Learning Resources</h3>
+                <p>Access curated learning materials to enhance your cybersecurity knowledge.</p>
+            </div>
+            <div class="dashboard-element">
+                <h3>Tools</h3>
+                <p>Utilize various tools for information gathering and threat detection.</p>
+            </div>
+            <div class="dashboard-element">
+                <h3>Community</h3>
+                <p>Connect with other cybersecurity enthusiasts and professionals.</p>
+            </div>
+        </div>
+    </section>
+  </div>
 {% endblock %}

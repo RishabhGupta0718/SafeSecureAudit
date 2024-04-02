@@ -4,248 +4,18 @@
   <head>
     <meta charset="UTF-8" />
     <title>SafeSecureAudit</title>
-    <!-- <link rel="stylesheet" href="{% static 'style.css' %}" /> -->
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
     <!-- Boxiocns CDN Link -->
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-
-  .container {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Added styles for container scroll */
-    height: 600px; /* Adjust height as needed */
-    overflow-y: auto;
-  }
-
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #007bff;
-  }
-
-  h2 {
-    color: #555;
-    font-size: 20px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    margin-bottom: 10px;
-  }
-
-  b {
-    color: #007bff;
-  }
-
-  p {
-    margin-bottom: 20px;
-  }
-
-  /* Tool-specific Styles */
-  .tool-section {
-    margin-top: 40px;
-  }
-
-  .tool-section h2 {
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-  }
-
-  .tool-section ul {
-    margin-left: 20px;
-  }
-
-  .tool-section li {
-    margin-left: 10px;
-  }
-
-  .tag-info {
-    color: #777;
-    font-size: 16px;
-    margin-left: 20px;
-  }
-
-  h1 {
-    text-align: center;
-    color: #b32323;
-  }
-
-  .form-group {
-    margin-bottom: 20px;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-  }
-
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-
-  input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  input[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-
-  /* Result Styles */
-  .result {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-
-  .result-title {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  .dns-resolver {
-  margin-top: 40px;
-}
-
-.dns-resolver .result-title {
-  color: #007bff;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.dns-resolver .record-type {
-  margin-bottom: 20px;
-}
-
-.dns-resolver .record-type h3 {
-  color: #555;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.dns-resolver .record-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.dns-resolver .record-list li {
-  color: #777;
-  font-size: 16px;
-  margin-left: 20px;
-}
-
-  .result-details {
-    margin-left: 20px;
-  }
-
-  .record-type {
-    margin-bottom: 20px;
-  }
-
-  .record-type h3 {
-    color: #555;
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-
-  .record-list {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  .record-list li {
-    color: #777;
-    font-size: 16px;
-    margin-left: 20px;
-  }
-
-  .progress-container {
-    width: 100%;
-    background-color: #ddd;
-    border-radius: 4px;
-    margin-bottom: 20px;
-  }
-
-  .progress-bar {
-    width: 0%;
-    height: 20px;
-    background-color: #007bff;
-    border-radius: 4px;
-    transition: width 0.3s ease-in-out;
-  }
-  /* CSS styles for Port Scanner Results */
-.port-scanner {
-  margin-top: 40px;
-}
-
-.port-scanner .result-title {
-  color: #007bff;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.port-list {
-  list-style: none;
-  padding: 0;
-}
-
-.port-item {
-  margin-bottom: 20px;
-}
-
-.port-number {
-  font-weight: bold;
-}
-
-.service {
-  color: #777;
-}
-b {
-  display: inline-block;
-  max-width: 100%; 
-  overflow-wrap: break-word;
-}
-
-</style>
-    </style>
-
-    <style>
-      /* Google Fonts Import Link */
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
       * {
         margin: 0;
@@ -266,9 +36,9 @@ b {
         z-index: 100;
         transition: all 0.8s ease;
       }
-      .sidebar.close {
+      /* .sidebar.close {
         width: 78px;
-      }
+      } */
       .sidebar .logo-details {
         height: 60px;
         width: 100%;
@@ -309,6 +79,7 @@ b {
       .sidebar .nav-links li {
         position: relative;
         list-style: none;
+        border-bottom: 0.5px solid rgb(43, 43, 47);
         /* transition: all 0.3s ease; */
       }
       .sidebar .nav-links li:hover {
@@ -339,16 +110,19 @@ b {
         display: none;
       }
       .sidebar .nav-links li a {
-        display: flex;
-        align-items: center;
+        display: block;
+        text-align: left;
+        padding-left: 15px;
+        padding-bottom: 6px;
         text-decoration: none;
       }
       .sidebar .nav-links li a .link_name {
         font-size: 18px;
         font-weight: 400;
-        color: #fff;
-        transition: all 0.8s ease;
+        /* color: #fff; */
+        transition: all 0.3s ease;
       }
+
       .sidebar.close .nav-links li a .link_name {
         opacity: 0;
         pointer-events: none;
@@ -427,7 +201,7 @@ b {
         width: 260px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-evenly;
         background: #1d1b31;
         padding: 12px 0;
         transition: all 0.8s ease;
@@ -529,152 +303,120 @@ b {
     </style>
   </head>
   <body>
-    <div class="sidebar close">
+    <div class="sidebar">
       <div class="logo-details">
-        <a href="/"><i class='bx bxs-shield-plus'></i></a>
-        <span class="logo_name">SafeSecureAudit</span>
+        <a href="/"><i class="bx bxs-shield-plus"></i></a>
+        <a href="/"><span class="logo_name">SSA</span></a>
       </div>
       <ul class="nav-links">
         <li>
-          <a href="{% url 'index' %}?tool=allinone">
-            <i class="bx bx-grid-alt"></i>
-            <span class="link_name">Dashboard</span>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=Arbitrary_File_Upload">
+            <span class="link_name">Arbitrary File Upload</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="{% url 'index' %}?tool=allinone">SafeSecureAudit360</a></li>
-          </ul>
         </li>
         <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class="bx bx-collection"></i>
-              <span class="link_name">Information Gathering</span>
-            </a>
-            <i class="bx bxs-chevron-down arrow"></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Information Gathering</a></li>
-            <a
-              href="{% url 'index' %}?tool=dnsresolvertool"
-              class="sidebar-link">DNS LOOKUP
-            </a>
-            <a href="{% url 'index' %}?tool=dnslookuptool" class="sidebar-link"
-              >DNS LOOKUP DEEP</a
-            >
-            <a href="{% url 'index' %}?tool=reversednstool" class="sidebar-link"
-              >Reverse DNS LookUp</a
-            >
-            <a href="{% url 'index' %}?tool=ipgeotool" class="sidebar-link"
-              >GEO LOCATION</a
-            >
-              <a href="{% url 'index' %}?tool=phoneinfo" class="sidebar-link"
-              >Phone Info</a>
-          </ul>
-        </li>
-        <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class="bx bx-book-alt"></i>
-              <span class="link_name">Detection Tools</span>
-            </a>
-            <i class="bx bxs-chevron-down arrow"></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Detection Tools</a></li>
-            <a href="{% url 'index' %}?tool=waf" class="sidebar-link"
-              >WAF CHECKER</a>
-              <a href="{% url 'index' %}?tool=brachdata" class="sidebar-link"
-              >Data Breach Checker</a>
-          </ul>
-        </li>
-        <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class="bx bx-pie-chart-alt-2"></i>
-              <span class="link_name">Web Scrapping</span>
-            </a>
-            <i class="bx bxs-chevron-down arrow"></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Web Scrapping</a></li>
-            <a href="{% url 'index' %}?tool=page_extract" class="sidebar-link"
-              >PAGE EXTRACTS</a
-            >
-            <a href="{% url 'index' %}?tool=extract_emails" class="sidebar-link"
-              >EMAIL EXTRACT</a
-            >
-          </ul>
-        </li>
-        <!-- Vuln -->
-        <li>
-          <div class="iocn-link">
-            <a href="#">
-              <i class="bx bx-book-alt"></i>
-              <span class="link_name">Vulnerability Scanner</span>
-            </a>
-            <i class="bx bxs-chevron-down arrow"></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">Vulnerability Scanner</a></li>
-            <a href="{% url 'index' %}?tool=portscanner" class="sidebar-link"
-              >Port Scanner</a>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-line-chart"></i>
-            <span class="link_name">Learning</span>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=CRLF_Injection">
+            <span class="link_name">CRLF Injection</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="/learning">Learn CyberSecurity</a></li>
-          </ul>
         </li>
         <li>
-          <a href="#">
-            <i class="bx bx-compass"></i>
-            <span class="link_name">Explore</span>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=csrf">
+            <span class="link_name">Cross Site Request Forgery</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="/Allaboutbugbounty">All about bug bounty</a></li>
-          </ul>
         </li>
         <li>
-          <a href="#">
-            <i class="bx bx-cog"></i>
-            <span class="link_name">Terms&Conditions</span>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=xss">
+            <span class="link_name">Cross Site Scripting</span>
           </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="/termsandcondition">Terms&Conditions</a></li>
-          </ul>
         </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=dos">
+            <span class="link_name">Denial of Service</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=ExposedSourceCode">
+            <span class="link_name">Exposed Source Code</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=HostHeaderInjection">
+            <span class="link_name">Host Header Injection</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=InsecureDirectObjectReferences">
+            <span class="link_name">Insecure Direct Object References</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=">
+            <span class="link_name">Insecure Direct Object References</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=Open_Redirect">
+            <span class="link_name">Open Redirect</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=ServerSideIncludeInjection">
+            <span class="link_name">Server Side Include Injection</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=SQLInjection">
+            <span class="link_name">SQL Injection</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=WebCachePoisoning">
+            <span class="link_name">Web Cache Poisoning</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=OAuthMisconfiguration">
+            <span class="link_name">OAuth Misconfiguration</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Allaboutbugbounty' %}?vuln10=LocalFileInclusion">
+            <span class="link_name">Local File Inclusion</span>
+          </a>
+        </li>
+        <br><br><hr><hr>
+        <li>
+          <a href="{% url 'learning' %}">
+            <span class="link_name">Learn CyberSecurity</span>
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <span class="link_name">HOME</span>
+          </a>
+        </li>
+
+
         <li>
           <div class="profile-details">
             <div class="profile-content">
               <img src="{% static 'image/profile.jpg' %}" alt="profileImg" />
             </div>
             <div class="name-job">
-              <div class="profile_name">CodeAx1</div>
+              <div class="profile_name">Anonymous</div>
               <div class="job">Cyber Security Enthusiast</div>
             </div>
-            <i class="bx bx-log-out"></i>
           </div>
         </li>
       </ul>
     </div>
     <section class="home-section">
       <div class="home-content">
-        <!-- <i class="bx bx-menu"></i> -->
-        <span class="text">SafeSecureAudit</span>
+        <span class="text">Learning</span>
       </div>
       <div class="content">{% block body %} {% endblock %}</div>
     </section>
 
     <script src="{% static 'script.js'%}"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var scanResult = document.getElementById("scanResult");
-        scanResult.style.display = "block";
-      });
-    </script>
   </body>
 </html>
